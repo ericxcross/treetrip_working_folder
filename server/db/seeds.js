@@ -73,25 +73,25 @@ const types = [{sea: {}},{air: {}},
             "name": "average",
             "fuel": [{
                 "name": "Diesel",
-                "co2e": 
+                "co2e": 0.17753
             },{
                 "name": "Petrol",
-                "co2e": 
+                "co2e": 0.18368
             },{
                 "name": "Hybrid",
-                "co2e": 
+                "co2e": 0.12568
             },{
                 "name": "CNG",
-                "co2e": 
+                "co2e": 0.17925
             },{
                 "name": "LPG",
-                "co2e": 
+                "co2e": 0.20022
             },{
                 "name": "Plug-In Hybrid Electric Vehicles",
-                "co2e":
+                "co2e": 0.07096
             },{
                 "name": "Electric Vehicle",
-                "co2e": 
+                "co2e": 0.0
             }]
         }]
     },{},{}]}
