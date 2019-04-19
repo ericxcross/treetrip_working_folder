@@ -1,4 +1,7 @@
-const types = [{
+use carbontrip;
+db.dropDatabase();
+
+db.items.insertMany( [{
   name: "sea",
   type: [{
     name: "foot passenger",
@@ -209,4 +212,4 @@ const types = [{
       },
     ]
   }
-];
+] );
