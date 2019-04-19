@@ -73,26 +73,59 @@ const types = [{sea: {}},{air: {}},
             "name": "average",
             "fuel": [{
                 "name": "Diesel",
-                "co2e": 
+                "co2e":
             },{
                 "name": "Petrol",
-                "co2e": 
+                "co2e":
             },{
                 "name": "Hybrid",
-                "co2e": 
+                "co2e":
             },{
                 "name": "CNG",
-                "co2e": 
+                "co2e":
             },{
                 "name": "LPG",
-                "co2e": 
+                "co2e":
             },{
                 "name": "Plug-In Hybrid Electric Vehicles",
                 "co2e":
             },{
                 "name": "Electric Vehicle",
-                "co2e": 
+                "co2e":
             }]
         }]
-    },{},{}]}
+    },{ "name: "motorbybe",
+        "sizes": "[{
+          "name": "small",
+          "fuel": [{
+            "name": "Diesel",
+            "co2e": 0.08463
+          }]
+        }, {
+          "name": "medium",
+          "fuel": [{
+            "name": "Diesel",
+            "co2e":0.1031
+          }]
+        },
+        {
+          "name": "large",
+          "fuel": [{
+            "name": "Diesel",
+            "co2e": 0.13528
+          }]
+        },
+        {
+          "name": "average",
+          "fuel": [{
+            "name": "Diesel",
+            "co2e": 0.11529
+          }]
+        },
+        }
+
+
+          ""
+        ]"
+  },{}]}
 ]
