@@ -1,7 +1,7 @@
 const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js');
 
-const CarbonCounter = function (url) {
+const CarbonCounter = function () {
     this.url = 'http://localhost:3000/api/transportmodes';
     this.request = new RequestHelper(this.url);
 };
