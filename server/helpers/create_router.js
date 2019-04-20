@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 const express = require("express");
 const ObjectID = require("mongodb").ObjectID;
-=======
-const express = require('express');
-const ObjectID = require('mongodb').ObjectID;
->>>>>>> develop
 
 const createRouter = function(collection) {
   const router = express.Router();
@@ -27,11 +22,7 @@ const createRouter = function(collection) {
     const newData = req.body;
     collection
       .insertOne(newData)
-<<<<<<< HEAD
-      .then(result => {
-=======
       .then(() => {
->>>>>>> develop
         collection
           .find()
           .toArray()

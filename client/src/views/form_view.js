@@ -9,23 +9,44 @@ FormView.prototype.bindEvents = function() {
     PubSub.publish("FormView:RequestData");
   });
   PubSub.subscribe("CarbonCounter:DataFound", evt => {
-    form.render(evt.detail);
+    this.render(evt.detail);
   });
 };
 
 FormView.prototype.render = function(formData) {
-  const selectElement = this.createSelect;
-  selectElement.addEventListener("change", evt => {});
+  this.form.innerHTML = "";
+
+  const selectElement = this.createSelect(formData);
+  this.form.appendChild(selectElement);
+
+  selectElement.addEventListener("change", evt => {
+    const action = filteredData => {
+      if (filteredData.type !== undefined) {
+        const newSelect = this.createSelect(filteredData.type);
+        this.form.appendChild(newSelect);
+        newSelect.addEventListener("change", evt => {
+          action(filteredData.type[evt.target.value]);
+        });
+      } else {
+      }
+    };
+    action(formData[evt.target.value]);
+  });
 };
 
 FormView.prototype.createSelect = function(formData) {
   const selectElement = document.createElement("select");
-  formData.forEach(item => {
+
+  const option = document.createElement("option");
+  selectElement.appendChild(option);
+
+  formData.forEach((item, index) => {
     const option = document.createElement("option");
     option.value = index;
-    option.name = item.name;
+    option.innerHTML = item.name;
     selectElement.appendChild(option);
   });
+
   return selectElement;
 };
 
