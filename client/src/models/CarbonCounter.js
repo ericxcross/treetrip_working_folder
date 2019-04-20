@@ -31,7 +31,7 @@ CarbonCounter.prototype.getData = function () {
 };
 
 
-CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers) {
+CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers=1) {
     const carbonTotal = co2e * distance / passengers; //kg co2e
     // PubSub.publish('CarbonCounter:OutputDataCO2e', carbonTotal);
     return carbonTotal;
