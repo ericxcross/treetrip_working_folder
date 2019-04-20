@@ -11,8 +11,8 @@ db.transportmodes.insertMany( [{
     co2e: 0.12953
   }]
 },{
-  "name": "air",
-  "type": [{
+  name: "air",
+  type: [{
       name: "short-haul",
       class: [{
         name: "economy",
