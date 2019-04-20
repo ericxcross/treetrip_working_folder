@@ -1,7 +1,7 @@
 use carbontrip;
 db.dropDatabase();
 
-db.items.insertMany( [{
+db.transportmodes.insertMany( [{
   name: "sea",
   type: [{
     name: "foot passenger",

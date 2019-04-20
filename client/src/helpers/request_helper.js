@@ -37,4 +37,3 @@ RequestHelper.prototype.put = function (id, payload) {
 };
 
 module.exports = RequestHelper;
-module.exports = RequestHelper;

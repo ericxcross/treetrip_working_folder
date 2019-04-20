@@ -1,4 +1,4 @@
-onst express = require('express');
+const express = require('express');
 const ObjectID = require('mongodb').ObjectID;
 
 const createRouter = function(collection) {
@@ -22,7 +22,7 @@ const createRouter = function(collection) {
     const newData = req.body;
     collection
       .insertOne(newData)
-      .then((result) => {
+      .then(() => {
         collection
           .find()
           .toArray()
