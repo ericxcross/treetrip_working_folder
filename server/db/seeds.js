@@ -1,43 +1,8 @@
-use carbontrip;
-db.dropDatabase();
-
-db.items.insertMany( [{
-  name: "sea",
-  type: [{
-    name: "foot passenger",
-    co2e: 0.01874
-  },{
-    name: "car passenger",
-    co2e: 0.12953
-  }]
-},{
-  "name": "air",
-  "type": [{
-      name: "short-haul",
-      class: [{
-        name: "economy",
-        co2e: 0.0175,
-      },{
-        name: "business",
-        co2e: 0.02624,
-      }]
-    },{
-      name: "long-haul",
-      class: [{
-        name: "economy",
-        co2e: 0.01783,
-      },{
-        name: "premium economy",
-        co2e: 0.02853,
-      },{
-        name: "business",
-        co2e: 0.05172,
-      },{
-        name: "first",
-        co2e: 0.07134,
-      }]
-    }]
-},{
+//keep
+const types = [
+  { sea: {} },
+  { air: {} },
+  {
     name: "land",
     type: [
       {
@@ -209,7 +174,7 @@ db.items.insertMany( [{
             ]
           }
         ]
-      },
+      }
     ]
   }
-] );
+];
