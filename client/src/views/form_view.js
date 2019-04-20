@@ -16,22 +16,49 @@ FormView.prototype.bindEvents = function() {
 FormView.prototype.render = function(formData) {
   this.form.innerHTML = "";
 
-  const selectElement = this.createSelect(formData, "las");
-  this.form.appendChild(selectElement);
+  let id = 0;
+  let idString;
 
-  selectElement.addEventListener("change", evt => {
-    const action = filteredData => {
-      if (filteredData.type !== undefined) {
-        const newSelect = this.createSelect(filteredData.type);
-        this.form.appendChild(newSelect);
-        newSelect.addEventListener("change", evt => {
-          action(filteredData.type[evt.target.value]);
-        });
-      } else {
-      }
-    };
-    action(formData[evt.target.value]);
-  });
+  const action = (filteredData) => {
+    id ++;
+    if (filteredData.type !== undefined) {
+      idString = "s"+id;
+      const newSelect = this.createSelect( filteredData.type, idString );
+      this.form.appendChild(newSelect);
+      newSelect.addEventListener("change", evt => {
+        selectIdNum = parseInt(evt.srcElement.id.slice(1));
+        if (id > selectIdNum){
+          for (var i = selectIdNum; i < id; i++) {
+            const redundantSelect = document.querySelector(`#s${i+1}`);
+            redundantSelect.remove();
+          }
+        }
+        action(filteredData.type[evt.target.value]);
+      });
+    }else{
+      const distanceInput = document.createElement("input");
+      distanceInput.type = "number";
+      distanceInput.min = 0;
+      distanceInput.step = 1;
+      distanceInput.value = 0;
+      distanceInput.id = "s"+id
+      this.form.appendChild(distanceInput);
+
+      id++;
+      const submit = document.createElement("input");
+      submit.type = "submit";
+      submit.value = "Calculate";
+      submit.id  = "s"+(id);
+      this.form.appendChild(submit);
+      submit.addEventListener("click", evt => {
+        evt.preventDefault();
+        console.dir(evt.target);
+        PubSub.publish('FormView:TripDetails', evt.target);
+      })
+    }
+  };
+
+  action(formData[0]);
 };
 
 FormView.prototype.createSelect = function(formData, id) {

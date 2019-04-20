@@ -1,7 +1,9 @@
 use carbontrip;
 db.dropDatabase();
 
-db.transportmodes.insertMany( [{
+db.transportmodes.insertOne( {
+  typename: "Medium",
+  type:[{
   name: "sea",
   typename: "Ferry Type",
   type: [{
@@ -203,4 +205,4 @@ db.transportmodes.insertMany( [{
       }
     ]
   }
-]);
+]});
