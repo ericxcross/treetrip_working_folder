@@ -203,4 +203,4 @@ db.transportmodes.insertMany( [{
       }
     ]
   }
-];
+]);
