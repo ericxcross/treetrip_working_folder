@@ -16,7 +16,7 @@ FormView.prototype.bindEvents = function() {
 FormView.prototype.render = function(formData) {
   this.form.innerHTML = "";
 
-  const selectElement = this.createSelect(formData);
+  const selectElement = this.createSelect(formData, "las");
   this.form.appendChild(selectElement);
 
   selectElement.addEventListener("change", evt => {
@@ -25,7 +25,7 @@ FormView.prototype.render = function(formData) {
         const newSelect = this.createSelect(filteredData.type);
         this.form.appendChild(newSelect);
         newSelect.addEventListener("change", evt => {
-          action(filteredData.type[evt.target.value]);
+          action(filteredData.type[evt.target.value]).reset();
         });
       } else {
       }
@@ -34,8 +34,9 @@ FormView.prototype.render = function(formData) {
   });
 };
 
-FormView.prototype.createSelect = function(formData) {
+FormView.prototype.createSelect = function(formData, id) {
   const selectElement = document.createElement("select");
+  selectElement.id = id;
 
   const option = document.createElement("option");
   selectElement.appendChild(option);
