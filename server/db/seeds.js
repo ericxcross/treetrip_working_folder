@@ -1,16 +1,58 @@
-//keep
-const types = [
-  { sea: {} },
-  { air: {} },
-  {
+use carbontrip;
+db.dropDatabase();
+
+db.transportmodes.insertMany( [{
+  name: "sea",
+  typename: "Ferry Type",
+  type: [{
+    name: "foot passenger",
+    co2e: 0.01874
+  },{
+    name: "car passenger",
+    co2e: 0.12953
+  }]
+},{
+  name: "air",
+  typename: "Flight Length",
+  type: [{
+      name: "short-haul",
+      typename: "Flight Class",
+      type: [{
+        name: "economy",
+        co2e: 0.0175,
+      },{
+        name: "business",
+        co2e: 0.02624,
+      }]
+    },{
+      name: "long-haul",
+      typename: "Flight Class",
+      type: [{
+        name: "economy",
+        co2e: 0.01783,
+      },{
+        name: "premium economy",
+        co2e: 0.02853,
+      },{
+        name: "business",
+        co2e: 0.05172,
+      },{
+        name: "first",
+        co2e: 0.07134,
+      }]
+    }]
+},{
     name: "land",
+    typename: "Vehicle Type",
     type: [
       {
         name: "car",
-        sizes: [
+        typename: "Vehicle Size",
+        type: [
           {
             name: "small",
-            fuel: [
+            typename: "Fuel Type",
+            type: [
               {
                 name: "Diesel",
                 co2e: 0.14533
@@ -35,7 +77,8 @@ const types = [
           },
           {
             name: "medium",
-            fuel: [
+            typename: "Fuel Type",
+            type: [
               {
                 name: "Diesel",
                 co2e: 0.17353
@@ -68,7 +111,8 @@ const types = [
           },
           {
             name: "large",
-            fuel: [
+            typename: "Fuel Type",
+            type: [
               {
                 name: "Diesel",
                 co2e: 0.2152
@@ -101,7 +145,8 @@ const types = [
           },
           {
             name: "average",
-            fuel: [
+            typename: "Fuel Type",
+            type: [
               {
                 name: "Diesel",
                 co2e: 0.17753
@@ -136,42 +181,23 @@ const types = [
       },
       {
         name: "motorbike",
-        sizes: [
+        typename: "Vehicle Size",
+        type: [
           {
             name: "small",
-            fuel: [
-              {
-                name: "Diesel",
-                co2e: 0.08463
-              }
-            ]
+            co2e: 0.08463
           },
           {
             name: "medium",
-            fuel: [
-              {
-                name: "Diesel",
-                co2e: 0.1031
-              }
-            ]
+            co2e: 0.1031
           },
           {
             name: "large",
-            fuel: [
-              {
-                name: "Diesel",
-                co2e: 0.13528
-              }
-            ]
+            co2e: 0.13528
           },
           {
             name: "average",
-            fuel: [
-              {
-                name: "Diesel",
-                co2e: 0.11529
-              }
-            ]
+            co2e: 0.11529
           }
         ]
       }

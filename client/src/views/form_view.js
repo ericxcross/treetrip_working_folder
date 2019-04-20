@@ -13,7 +13,21 @@ FormView.prototype.bindEvents = function() {
   });
 };
 
-FormView.prototype.render = function() {};
+FormView.prototype.render = function(formData) {
+  const selectElement = this.createSelect;
+  selectElement.addEventListener("change", evt => {});
+};
+
+FormView.prototype.createSelect = function(formData) {
+  const selectElement = document.createElement("select");
+  formData.forEach(item => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.name = item.name;
+    selectElement.appendChild(option);
+  });
+  return selectElement;
+};
 
 // FormView.prototype.handleSubmit = function(evt) {
 //   evt.preventDefault();
