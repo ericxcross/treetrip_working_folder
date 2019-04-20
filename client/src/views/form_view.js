@@ -25,7 +25,7 @@ FormView.prototype.render = function(formData) {
         const newSelect = this.createSelect(filteredData.type);
         this.form.appendChild(newSelect);
         newSelect.addEventListener("change", evt => {
-          action(filteredData.type[evt.target.value]).reset();
+          action(filteredData.type[evt.target.value]);
         });
       } else {
       }
