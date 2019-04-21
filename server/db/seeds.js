@@ -5,7 +5,7 @@ db.transportmodes.insertOne( {
   typename: "terrain",
   type:[{
   name: "sea",
-  typename: "ferry type",
+  typename: "ferry-type",
   type: [{
     name: "foot passenger",
     co2e: 0.01874
@@ -15,7 +15,7 @@ db.transportmodes.insertOne( {
   }]
 },{
   name: "air",
-  typename: "flight type",
+  typename: "flight-type",
   type: [{
       name: "domestic",
       typename: "class",
@@ -45,7 +45,7 @@ db.transportmodes.insertOne( {
     }]
 },{
     name: "land",
-    typename: "vehicle type",
+    typename: "vehicle-type",
     type: [
       {
         name: "car",
@@ -53,7 +53,7 @@ db.transportmodes.insertOne( {
         type: [
           {
             name: "small",
-            typename: "fuel type",
+            typename: "fuel-type",
             type: [
               {
                 name: "Diesel",
@@ -79,7 +79,7 @@ db.transportmodes.insertOne( {
           },
           {
             name: "medium",
-            typename: "fuel type",
+            typename: "fuel-type",
             type: [
               {
                 name: "Diesel",
@@ -113,7 +113,7 @@ db.transportmodes.insertOne( {
           },
           {
             name: "large",
-            typename: "fuel type",
+            typename: "fuel-type",
             type: [
               {
                 name: "Diesel",
@@ -149,7 +149,7 @@ db.transportmodes.insertOne( {
       },
       {
         name: "motorcycle",
-        typename: "motorcycle size",
+        typename: "size",
         type: [
           {
             name: "small",
