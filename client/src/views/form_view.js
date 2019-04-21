@@ -14,6 +14,7 @@ FormView.prototype.bindEvents = function() {
 };
 
 FormView.prototype.render = function(formData) {
+
   this.form.innerHTML = "";
 
   let id = 0;
@@ -30,8 +31,9 @@ FormView.prototype.render = function(formData) {
         if (id > selectIdNum){
           for (var i = selectIdNum; i < id; i++) {
             const redundantSelect = document.querySelector(`#s${i+1}`);
-            redundantSelect.remove();
+            if (redundantSelect !== null){redundantSelect.remove()};
           }
+          id = selectIdNum;
         }
         action(filteredData.type[evt.target.value]);
       });
