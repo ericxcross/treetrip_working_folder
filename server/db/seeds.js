@@ -1,61 +1,58 @@
 use carbontrip;
 db.dropDatabase();
 
-db.transportmodes.insertOne( {
+db.transportmodes.insertOne({
   typename: "terrain",
-  type:[{
-  name: "sea",
-  typename: "ferry-type",
   type: [{
-    name: "foot passenger",
-    co2e: 0.01874
-  },{
-    name: "car passenger",
-    co2e: 0.12953
-  }]
-},{
-  name: "air",
-  typename: "flight-type",
-  type: [{
-      name: "domestic",
+    name: "Sea",
+    typename: "ferry-type",
+    type: [{
+      name: "foot passenger",
+      co2e: 0.01874
+    }, {
+      name: "car passenger",
+      co2e: 0.12953
+    }]
+  }, {
+    name: "Air",
+    typename: "flight-type",
+    type: [{
+      name: "Domestic",
       typename: "class",
       type: [{
         name: "economy",
         co2e: 0.0175,
-      },{
+      }, {
         name: "business",
         co2e: 0.02624,
       }]
-    },{
-      name: "international",
+    }, {
+      name: "International",
       typename: "class",
       type: [{
         name: "economy",
         co2e: 0.01783,
-      },{
+      }, {
         name: "premium economy",
         co2e: 0.02853,
-      },{
+      }, {
         name: "business",
         co2e: 0.05172,
-      },{
+      }, {
         name: "first",
         co2e: 0.07134,
       }]
     }]
-},{
-    name: "land",
+  }, {
+    name: "Land",
     typename: "vehicle-type",
-    type: [
-      {
-        name: "car",
+    type: [{
+        name: "Car",
         typename: "size",
-        type: [
-          {
+        type: [{
             name: "Up to 1.3L engine",
             typename: "fuel-type",
-            type: [
-              {
+            type: [{
                 name: "Diesel",
                 co2e: 0.14533
               },
@@ -80,8 +77,7 @@ db.transportmodes.insertOne( {
           {
             name: "Up to 1.8L engine",
             typename: "fuel-type",
-            type: [
-              {
+            type: [{
                 name: "Diesel",
                 co2e: 0.17353
               },
@@ -114,8 +110,7 @@ db.transportmodes.insertOne( {
           {
             name: "Over 1.8L engine",
             typename: "fuel-type",
-            type: [
-              {
+            type: [{
                 name: "Diesel",
                 co2e: 0.2152
               },
@@ -148,10 +143,9 @@ db.transportmodes.insertOne( {
         ]
       },
       {
-        name: "motorcycle",
+        name: "Motorcycle",
         typename: "size",
-        type: [
-          {
+        type: [{
             name: "Up to 125CC engine",
             co2e: 0.08463
           },
@@ -164,10 +158,58 @@ db.transportmodes.insertOne( {
             co2e: 0.13528
           }
         ]
+      },
+      {
+        name: "Rail",
+        typename: "Category",
+        type: [{
+            name: "National Rail",
+            co2e: 0.04424
+          },
+          {
+            name: "International Rail",
+            co2e: 0.01226
+          },
+          {
+            name: "Light Rail and Tram",
+            co2e: 0.03967
+          },
+          {
+            name: "Underground Metro",
+            co2e: 0.0376
+          }
+        ]
+      },
+      {
+        name: "Bus",
+        typename: "Category",
+        type: [{
+          name: "Local bus (not London)",
+          co2e: 0.12007
+        }, {
+          name: "Local London bus",
+          co2e: 0.07211
+        }, {
+          name: "Average local bus",
+          co2e: 0.10097
+        }, {
+          name: "Coach",
+          co2e: 0.02801
+        }]
+      }, {
+        name: "Taxi",
+        typename: "Category",
+        type: [{
+          name: "Regular Taxi",
+          co2e: 0.15344
+        }, {
+          name: "Black cab",
+          co2e: 0.2142
+        }]
       }
     ]
-  }
-]});
+  }]
+});
 
 
 // {
