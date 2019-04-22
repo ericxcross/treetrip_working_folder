@@ -6,15 +6,11 @@ const ResultTotalView = function(element) {
 };
 
 ResultTotalView.prototype.bindEvents = function () {
-  PubSub.subscribe("CarbonCounter:OutputDataCO2e", (evt)=>{
-    console.log(evt.detail)
-    this.renderCO2e(evt.detail)
-  });
-  PubSub.subscribe("CarbonCounter:OutputDataTrees", (evt)=>{
-    this.renderTrees(evt.detail);
-  });
-  PubSub.subscribe("CarbonCounter:OutputDataSC", (evt)=>{
-    this.renderSC(evt.detail);
+  PubSub.subscribe("CarbonCounter:OutputData", (evt)=>{
+    this.element.innerHTML = '';
+    this.renderCO2e(evt.detail.co2e)
+    this.renderTrees(evt.detail.trees)
+    this.renderSC(evt.detail.sc)
   });
 };
 
