@@ -217,35 +217,51 @@ db.transportmodes.insertOne({
 db.alternativeTransportModes.insertOne({
   alternatives: [{
     name: "Plane - Economy Class",
-    co2e: 0.1597
+    co2e: 0.1597,
+    mindistance: 200,
+    maxdistance: 999999 
   },
   {
     name: "Ferry",
-    co2e: 0.112873
+    co2e: 0.112873,
+    mindistance: 0,
+    maxdistance: 999999
   },
   {
     name: "Train",
-    co2e: 0.04424
+    co2e: 0.04424,
+    mindistance: 0,
+    maxdistance: 999999
   },
   {
     name: "Tram",
-    co2e: 0.03967
+    co2e: 0.03967,
+    mindistance: 0,
+    maxdistance: 100
   },
   {
     name: "Bus",
-    co2e: 0.10097
+    co2e: 0.10097,
+    mindistance: 0,
+    maxdistance: 999999
   },
   {
     name: "Electric Car",
-    co2e: 0
+    co2e: 0,
+    mindistance: 0,
+    maxdistance: 600
   },
   {
     name: "Cycle",
-    co2e: 0
+    co2e: 0,
+    mindistance: 0,
+    maxdistance: 100
   },
   {
     name: "Walk",
-    co2e: 0
+    co2e: 0,
+    mindistance: 0,
+    maxdistance: 50
   }]}
 )
 // {

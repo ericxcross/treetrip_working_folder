@@ -15,6 +15,7 @@ CarbonCounter.prototype.bindEvents = function () {
     });
 
     PubSub.subscribe('FormView:TripDetails', (evt) => {
+
         const distance = parseInt(evt.detail.distance);
         const co2e = evt.detail.co2e;
         const carbonTotal = this.calculateCO2e(co2e, distance);
@@ -25,35 +26,67 @@ CarbonCounter.prototype.bindEvents = function () {
             trees: treesRequired,
             sc: socialCost
         }
-        console.log(outputData);
 
         PubSub.publish('CarbonCounter:OutputData', outputData);
-        let alternativeTransport = [];        
-        this.alternatives.forEach((element) => {
-            let co2eEle = element.co2e;
-            let co2eAlt = this.calculateCO2e(co2eEle, distance);            
-            let CO2edifference = co2eAlt - carbonTotal;
-            let treesAlt = this.calculateTrees(co2eAlt);
-            let treesDifference = treesAlt - treesRequired;
-            let socialCostAlt = this.calculateSocialCost(co2eAlt);
-            let socialCostDifference = socialCostAlt - socialCost;
-            const alternativeData = {
-                name: element.name,
-                co2e: co2eAlt,
-                co2eChange: CO2edifference,
-                trees: treesAlt,
-                treesChange: treesDifference,
-                sc: socialCostAlt,
-                scChange: socialCostDifference
-            }
-            alternativeTransport.push(alternativeData);
-        });
-        console.log(alternativeTransport);
+        const viableAlternatives = this.viableAlternatives(distance);
+        console.log(viableAlternatives);
         
+        let alternativeTransport = [];
+        this.viableAlternatives.forEach((element) => {
+            let co2eEle = element.co2e;
+            let co2eAlt = this.calculateCO2e(co2eEle, distance);
+            if (co2e !== co2eEle) {
+                let CO2edifference = Math.round((co2eAlt - carbonTotal) * 100) / 100;
+                let treesAlt = this.calculateTrees(co2eAlt);
+                let treesDifference = treesAlt - treesRequired;
+                let socialCostAlt = this.calculateSocialCost(co2eAlt);
+                let socialCostDifference = socialCostAlt - socialCost;
+                if (element.name === "Walk") {
+                    const caloriesBurned = distance * 70;
+                    const alternativeData = {
+                        name: element.name,
+                        co2e: co2eAlt,
+                        co2eChange: CO2edifference,
+                        trees: treesAlt,
+                        treesChange: treesDifference,
+                        sc: socialCostAlt,
+                        scChange: socialCostDifference,
+                        calories: caloriesBurned
+                    };
+                    alternativeTransport.push(alternativeData);
+                } else if (element.name === "Cycle ") {
+                    const caloriesBurned = distance * 30;
+                    const alternativeData = {
+                        name: element.name,
+                        co2e: co2eAlt,
+                        co2eChange: CO2edifference,
+                        trees: treesAlt,
+                        treesChange: treesDifference,
+                        sc: socialCostAlt,
+                        scChange: socialCostDifference,
+                        calories: caloriesBurned
+                    };
+                    alternativeTransport.push(alternativeData);
+                } else {
+                    const alternativeData = {
+                        name: element.name,
+                        co2e: co2eAlt,
+                        co2eChange: CO2edifference,
+                        trees: treesAlt,
+                        treesChange: treesDifference,
+                        sc: socialCostAlt,
+                        scChange: socialCostDifference
+                    };
+                    alternativeTransport.push(alternativeData);
+                }
+
+            }
+        })
+        // YOU ARE HERE - PUBLISH AND MOVE ON TO ALTERNATIVES VIEW, LOGIC TO INCLUDE CALORIES IF CYCLE OR WALK
     })
 
-    PubSub.subscribe('CarbonCounter:AlternativesDataFound',(evt)=>{
-        this.alternatives = evt.detail[0].alternatives; 
+    PubSub.subscribe('CarbonCounter:AlternativesDataFound', (evt) => {
+        this.alternatives = evt.detail[0].alternatives;
     })
 };
 
@@ -70,6 +103,25 @@ CarbonCounter.prototype.getData = function () {
         .catch(console.error);
 };
 
+CarbonCounter.prototype.viableAlternatives = function (distance){
+    const viableAlternatives = this.alternatives;
+    if (distance < 50) {
+        viableAlternatives.splice(0,1); // removes plane
+        return viableAlternatives;
+    } else if (distance < 100) {
+        viableAlternatives.splice(0,1).splice(6,1); // removes plane, walk
+        return viableAlternatives;
+    } else if (distance < 200) {
+        viableAlternatives.splice(0,1).splice(2,1).splice(4,2); // removes plane, tram, cycle, walk
+        return viableAlternatives;
+    } else if (distance < 600) {
+        viableAlternatives.splice(3,1).splice(5,2); // removes tram, cycle, walk
+        return viableAlternatives;
+    } else {
+        viableAlternatives.splice(3,1).splice(4,3); // removes tram, electric car, cycle, walk
+        return viableAlternatives;
+    }
+}
 
 CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers = 1) {
     const carbonTotal = co2e * distance / passengers; //kg co2e
@@ -79,7 +131,6 @@ CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers = 1
 CarbonCounter.prototype.calculateTrees = function (carbonTotal) {
     // assumes one tree absorbs 22kg CO2 / year
     const trees = carbonTotal / (22 / 365); //number of trees in one day to absorb the trip CO2
-
     return Math.round(trees);
 };
 
