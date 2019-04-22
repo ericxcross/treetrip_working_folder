@@ -81,7 +81,6 @@ CarbonCounter.prototype.bindEvents = function () {
         console.log(alternativeTransport);
         PubSub.publish('CarbonCounter:AlternativeTravelOptions', alternativeTransport);
 
-        // YOU ARE HERE - PUBLISH AND MOVE ON TO ALTERNATIVES VIEW, LOGIC TO INCLUDE CALORIES IF CYCLE OR WALK
     })
 
     PubSub.subscribe('CarbonCounter:AlternativesDataFound', (evt) => {
