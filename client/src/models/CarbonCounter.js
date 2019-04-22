@@ -12,8 +12,8 @@ CarbonCounter.prototype.bindEvents = function () {
     });
 
     PubSub.subscribe('FormView:TripDetails', (evt) => {
-        const distance = evt.detail.distance; 
-        const co2e = evt.detail.co2e; 
+        const distance = parseInt(evt.detail.distance);
+        const co2e = evt.detail.co2e;
         const carbonTotal = this.calculateCO2e(co2e, distance);
         this.calculateTrees(carbonTotal);
         this.calculateSocialCost(carbonTotal);
