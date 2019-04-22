@@ -52,7 +52,9 @@ FormView.prototype.render = function(formData) {
       this.form.appendChild(submit);
       submit.addEventListener("click", evt => {
         evt.preventDefault();
-        console.dir(evt.target);
+        console.log(evt);
+        
+        console.dir(evt.target.form[-2].value);
         PubSub.publish('FormView:TripDetails', evt.target);
       })
     }
