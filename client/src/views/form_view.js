@@ -41,7 +41,7 @@ FormView.prototype.render = function(formData) {
         action(selectedData);
       });
     }else{
-      const newDistanceInput = this.createDistanceInput(idNum)
+      this.createDistanceInput(idNum);
       idNum++;
       const submit = this.createSubmit(idNum);
 
@@ -89,15 +89,15 @@ FormView.prototype.createSelect = function(formData, idNum) {
 FormView.prototype.createDistanceInput = function(idNum) {
   const inputDiv = document.createElement('div');
   inputDiv.classList.add(`select-${idNum}`);
-  inputDiv.id = "distance-travelled"
+  inputDiv.id = "distance"
 
   const inputLabel = document.createElement("label");
-  inputLabel.for = "distanceTravelled";
+  inputLabel.for = "distance";
   inputLabel.innerHTML = 'Distance Travelled';
 
   const distanceInput = document.createElement("input");
   distanceInput.type = "number";
-  distanceInput.name = "distanceTravelled"
+  distanceInput.name = "distance";
   distanceInput.min = 0;
   distanceInput.step = 1;
   distanceInput.classList.add(`select-${idNum}`);
@@ -121,7 +121,7 @@ FormView.prototype.createSubmit = function(idNum) {
 
 FormView.prototype.handleSubmit = function(evt) {
   evt.preventDefault();
-  this.currentItems['distance-travelled'] = evt.target.form.distanceTravelled.value;
+  this.currentItems['distance'] = evt.target.form.distance.value;
   PubSub.publish('FormView:TripDetails', this.currentItems);
 };
 
