@@ -1,21 +1,26 @@
 body {
   scroll-behavior: smooth;
-  /* background-color: #f2f0eb10; */
+  background-color: #f2f0eb10;
   font-family: "Open Sans Condensed", sans-serif;
+  margin: 0px;
 }
 
 .logo {
-  padding-bottom: 5em;
+  padding-bottom: 4em;
   border-bottom: solid black;
+  box-sizing: border-box;
 }
 
 #carbon-trip-logo {
-  display: flex;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
 }
 
 #carbon-form {
   text-align: center;
-  min-height: 666px;
+  min-height: 800px;
   display: block;
 }
 
@@ -23,17 +28,21 @@ body {
 .select-2,
 .select-3,
 .select-4 {
-  background-color: black;
-  margin: 20%;
-  margin-top: 10%;
-  padding-top: 10%;
+  background-color: #00000090;
+  margin-top: 20%;
+  width: 50%;
+  padding: 10%;
+  color: #f2f0eb;
   text-align: center;
-  color: #5f8c4a;
+  box-sizing: content-box;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 label {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  text-align: center;
+  font-family: "M PLUS Rounded 1c";
+  font-size: 30px;
+  margin: 40%;
 }
 
 #result-total {

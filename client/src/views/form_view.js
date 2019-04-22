@@ -19,16 +19,16 @@ FormView.prototype.render = function(formData) {
 
   let idNum = 0;
 
-  const action = (filteredData) => {
-    idNum ++;
+  const action = filteredData => {
+    idNum++;
     if (filteredData.type !== undefined) {
-      const newSelect = this.createSelect( filteredData, idNum );
+      const newSelect = this.createSelect(filteredData, idNum);
       newSelect.addEventListener("change", evt => {
         const selectIdNum = parseInt(evt.srcElement.classList[0].slice(7));
-        if (idNum > selectIdNum){
+        if (idNum > selectIdNum) {
           for (var i = selectIdNum; i < idNum; i++) {
-            const redundantSelect = document.querySelector(`.select-${i+1}`);
-            if (redundantSelect !== null){
+            const redundantSelect = document.querySelector(`.select-${i + 1}`);
+            if (redundantSelect !== null) {
               delete this.currentItems[redundantSelect.id];
               redundantSelect.remove();
             }
@@ -40,15 +40,14 @@ FormView.prototype.render = function(formData) {
         this.currentItems.co2e = selectedData.co2e;
         action(selectedData);
       });
-    }else{
+    } else {
       this.createDistanceInput(idNum);
       idNum++;
       const submit = this.createSubmit(idNum);
 
       submit.addEventListener("click", evt => {
         this.handleSubmit(evt);
-      })
-
+      });
     }
   };
 
@@ -56,7 +55,7 @@ FormView.prototype.render = function(formData) {
 };
 
 FormView.prototype.createSelect = function(formData, idNum) {
-  const selectDiv = document.createElement('div');
+  const selectDiv = document.createElement("div");
   selectDiv.classList.add(`select-${idNum}`);
   selectDiv.id = formData.typename;
 
@@ -68,10 +67,10 @@ FormView.prototype.createSelect = function(formData, idNum) {
   selectLabel.innerHTML = `${formData.typename.split("-").join(" ")}:`;
 
   const option = document.createElement("option");
-  option.value = '';
+  option.value = "";
   selectElement.appendChild(option);
 
-  formData.type.forEach((item) => {
+  formData.type.forEach(item => {
     const option = document.createElement("option");
     option.value = JSON.stringify(item);
     option.innerHTML = item.name;
@@ -87,13 +86,13 @@ FormView.prototype.createSelect = function(formData, idNum) {
 };
 
 FormView.prototype.createDistanceInput = function(idNum) {
-  const inputDiv = document.createElement('div');
+  const inputDiv = document.createElement("div");
   inputDiv.classList.add(`select-${idNum}`);
-  inputDiv.id = "distance"
+  inputDiv.id = "distance";
 
   const inputLabel = document.createElement("label");
   inputLabel.for = "distance";
-  inputLabel.innerHTML = 'Distance Travelled';
+  inputLabel.innerHTML = "Distance Travelled";
 
   const distanceInput = document.createElement("input");
   distanceInput.type = "number";
@@ -115,14 +114,14 @@ FormView.prototype.createSubmit = function(idNum) {
   submit.type = "submit";
   submit.name = "Calculate";
   submit.classList.add(`select-${idNum}`);
-  this.form.appendChild(submit)
+  this.form.appendChild(submit);
   return submit;
 };
 
 FormView.prototype.handleSubmit = function(evt) {
   evt.preventDefault();
-  this.currentItems['distance'] = evt.target.form.distance.value;
-  PubSub.publish('FormView:TripDetails', this.currentItems);
+  this.currentItems["distance"] = evt.target.form.distance.value;
+  PubSub.publish("FormView:TripDetails", this.currentItems);
 };
 
 module.exports = FormView;
