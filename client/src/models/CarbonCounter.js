@@ -31,21 +31,23 @@ CarbonCounter.prototype.getData = function () {
 };
 
 
-CarbonCounter.prototype.calculateCO2e = function (co2e, distance) {
-    const carbonTotal = co2e * distance; //kg co2e
-    PubSub.publish('CarbonCounter:OutputDataCO2e', carbonTotal);
+CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers) {
+    const carbonTotal = co2e * distance / passengers; //kg co2e
+    // PubSub.publish('CarbonCounter:OutputDataCO2e', carbonTotal);
     return carbonTotal;
 };
 
 CarbonCounter.prototype.calculateTrees = function (carbonTotal) {
     // assumes one tree absorbs 22kg CO2 / year
     const trees = carbonTotal / (22/365); //number of trees in one day to absorb the trip CO2
-    PubSub.publish('CarbonCounter:OutputDataTrees', trees)
+    // PubSub.publish('CarbonCounter:OutputDataTrees', trees)
+    return trees;
 };
 
 CarbonCounter.prototype.calculateSocialCost = function (carbonTotal) {
     const socialCost = 0.00025 * carbonTotal;
-    PubSub.publish('CarbonCounter:OutputDataSC', socialCost);
+    // PubSub.publish('CarbonCounter:OutputDataSC', socialCost);
+    return socialCost;
 };
 
 

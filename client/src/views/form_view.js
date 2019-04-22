@@ -2,6 +2,7 @@ const PubSub = require("../helpers/pub_sub.js");
 
 const FormView = function(form) {
   this.form = form;
+  this.currentItems = {};
 };
 
 FormView.prototype.bindEvents = function() {
@@ -16,73 +17,114 @@ FormView.prototype.bindEvents = function() {
 FormView.prototype.render = function(formData) {
   this.form.innerHTML = "";
 
-  let id = 0;
-  let idString;
+  let idNum = 0;
 
   const action = (filteredData) => {
-    id ++;
+    idNum ++;
     if (filteredData.type !== undefined) {
-      idString = "s"+id;
-      const newSelect = this.createSelect( filteredData.type, idString );
-      this.form.appendChild(newSelect);
+      const newSelect = this.createSelect( filteredData, idNum );
       newSelect.addEventListener("change", evt => {
-        selectIdNum = parseInt(evt.srcElement.id.slice(1));
-        if (id > selectIdNum){
-          for (var i = selectIdNum; i < id; i++) {
-            const redundantSelect = document.querySelector(`#s${i+1}`);
-            redundantSelect.remove();
+        const selectIdNum = parseInt(evt.srcElement.classList[0].slice(7));
+        if (idNum > selectIdNum){
+          for (var i = selectIdNum; i < idNum; i++) {
+            const redundantSelect = document.querySelector(`.select-${i+1}`);
+            if (redundantSelect !== null){
+              delete this.currentItems[redundantSelect.id];
+              redundantSelect.remove();
+            }
           }
+          idNum = selectIdNum;
         }
-        action(filteredData.type[evt.target.value]);
+        const selectedData = JSON.parse(evt.target.value);
+        this.currentItems[filteredData.typename] = selectedData.name;
+        if (selectedData.type === undefined){
+          this.currentItems['co2e'] = selectedData.co2e;
+        };
+        action(selectedData);
       });
     }else{
-      const distanceInput = document.createElement("input");
-      distanceInput.type = "number";
-      distanceInput.min = 0;
-      distanceInput.step = 1;
-      distanceInput.value = 0;
-      distanceInput.id = "s"+id
-      this.form.appendChild(distanceInput);
+      const newDistanceInput = this.createDistanceInput(idNum)
+      idNum++;
+      const submit = this.createSubmit(idNum);
 
-      id++;
-      const submit = document.createElement("input");
-      submit.type = "submit";
-      submit.value = "Calculate";
-      submit.id  = "s"+(id);
-      this.form.appendChild(submit);
       submit.addEventListener("click", evt => {
-        evt.preventDefault();
-        console.log(evt);
-        
-        console.dir(evt.target.form[-2].value);
-        PubSub.publish('FormView:TripDetails', evt.target);
+        this.handleSubmit(evt);
       })
+
     }
   };
 
   action(formData[0]);
 };
 
-FormView.prototype.createSelect = function(formData, id) {
+FormView.prototype.createSelect = function(formData, idNum) {
+  const selectDiv = document.createElement('div');
+  selectDiv.classList.add(`select-${idNum}`);
+  selectDiv.id = formData.typename;
+
   const selectElement = document.createElement("select");
-  selectElement.id = id;
+  selectElement.classList.add(`select-${idNum}`);
+
+  const selectLabel = document.createElement("label");
+  selectLabel.for = selectElement.id;
+  selectLabel.innerHTML = `${formData.typename.split("-").join(" ")}:`;
 
   const option = document.createElement("option");
+  option.value = '';
   selectElement.appendChild(option);
 
-  formData.forEach((item, index) => {
+  formData.type.forEach((item) => {
     const option = document.createElement("option");
-    option.value = index;
+    option.value = JSON.stringify(item);
     option.innerHTML = item.name;
     selectElement.appendChild(option);
   });
 
+  selectDiv.appendChild(selectLabel);
+  selectDiv.appendChild(selectElement);
+
+  this.form.appendChild(selectDiv);
+
   return selectElement;
 };
 
-// FormView.prototype.handleSubmit = function(evt) {
-//   evt.preventDefault();
-//   PubSub.publish("FormView:form-submitted", evt.target);
-// };
+FormView.prototype.createDistanceInput = function(idNum) {
+  const inputDiv = document.createElement('div');
+  inputDiv.classList.add(`select-${idNum}`);
+  inputDiv.id = "distance-travelled"
+
+  const inputLabel = document.createElement("label");
+  inputLabel.for = "distanceTravelled";
+  inputLabel.innerHTML = 'Distance Travelled';
+
+  const distanceInput = document.createElement("input");
+  distanceInput.type = "number";
+  distanceInput.name = "distanceTravelled"
+  distanceInput.min = 0;
+  distanceInput.step = 1;
+  distanceInput.classList.add(`select-${idNum}`);
+
+  inputDiv.appendChild(inputLabel);
+  inputDiv.appendChild(distanceInput);
+
+  this.form.appendChild(inputDiv);
+
+  return distanceInput;
+};
+
+FormView.prototype.createSubmit = function(idNum) {
+  const submit = document.createElement("input");
+  submit.type = "submit";
+  submit.name = "Calculate";
+  submit.classList.add(`select-${idNum}`);
+  this.form.appendChild(submit)
+  return submit;
+};
+
+FormView.prototype.handleSubmit = function(evt) {
+  evt.preventDefault();
+  this.currentItems['distance-travelled'] = evt.target.form.distanceTravelled.value;
+  PubSub.publish('FormView:TripDetails', this.currentItems);
+};
 
 module.exports = FormView;
