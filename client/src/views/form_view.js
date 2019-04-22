@@ -99,7 +99,7 @@ FormView.prototype.createDistanceInput = function(idNum) {
   distanceInput.name = "distance";
   distanceInput.min = 0;
   distanceInput.step = 1;
-  distanceInput.classList.add(`select-${idNum}`);
+  // distanceInput.classList.add(`select-${idNum}`);
 
   inputDiv.appendChild(inputLabel);
   inputDiv.appendChild(distanceInput);
@@ -113,7 +113,7 @@ FormView.prototype.createSubmit = function(idNum) {
   const submit = document.createElement("input");
   submit.type = "submit";
   submit.name = "Calculate";
-  submit.classList.add(`select-${idNum}`);
+  // submit.classList.add(`select-${idNum}`);
   this.form.appendChild(submit);
   return submit;
 };

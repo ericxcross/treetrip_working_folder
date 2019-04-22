@@ -17,6 +17,7 @@ ResultTotalView.prototype.bindEvents = function() {
 ResultTotalView.prototype.renderCO2e = function(co2e) {
   const co2eDiv = document.createElement("div");
   co2eDiv.id = "co2-result";
+  co2eDiv.classList.add(`hexagon`);
   const co2eH2 = document.createElement("h2");
   co2eH2.innerHTML = `${co2e}kg`;
   const co2eP = document.createElement("p");
@@ -30,6 +31,7 @@ ResultTotalView.prototype.renderCO2e = function(co2e) {
 ResultTotalView.prototype.renderTrees = function(trees) {
   const treeDiv = document.createElement("div");
   treeDiv.id = "tree-result";
+  treeDiv.classList.add(`hexagon`);
   const treeH2 = document.createElement("h2");
   treeH2.innerHTML = `${trees} trees`;
   const treeP = document.createElement("p");
@@ -43,6 +45,7 @@ ResultTotalView.prototype.renderTrees = function(trees) {
 ResultTotalView.prototype.renderSC = function(sc) {
   const scDiv = document.createElement("div");
   scDiv.id = "sc-result";
+  scDiv.classList.add(`hexagon`);
   const scH2 = document.createElement("h2");
   scH2.innerHTML = `${sc}£`;
   const scP = document.createElement("p");
