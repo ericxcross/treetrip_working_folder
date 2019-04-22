@@ -21,26 +21,26 @@ db.transportmodes.insertOne({
       typename: "Class",
       type: [{
         name: "Economy",
-        co2e: 0.0175,
+        co2e: 0.1597,
       }, {
         name: "Business",
-        co2e: 0.02624,
+        co2e: 0.23955,
       }]
     }, {
       name: "International",
       typename: "Class",
       type: [{
         name: "Economy",
-        co2e: 0.01783,
+        co2e: 0.13996470332751,
       }, {
         name: "Premium Economy",
-        co2e: 0.02853,
+        co2e: 0.22395,
       }, {
         name: "Business",
-        co2e: 0.05172,
+        co2e: 0.4059,
       }, {
         name: "First",
-        co2e: 0.07134,
+        co2e: 0.55987,
       }]
     }]
   }, {
@@ -207,7 +207,16 @@ db.transportmodes.insertOne({
   }]
 });
 
-
+// plane
+// ferry
+// train
+// Bus
+// Electric vehicle
+// Cycle
+// Walk
+db.alternativeTransportModes.insertOne(
+  {name: "Plane - Economy Class", co2e: },
+)
 // {
 //   name: "average",
 //   typename: "fuel type",
