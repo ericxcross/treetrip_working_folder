@@ -1,6 +1,6 @@
 body {
   scroll-behavior: smooth;
-  background-color: #f2f0eb10;
+  /* background-color: #f2f0eb10; */
   font-family: "Open Sans Condensed", sans-serif;
 }
 
@@ -62,7 +62,7 @@ label {
 }
 
 #sc-result {
-  /* box-sizing: content-box; */
+  box-sizing: content-box;
   color: white;
   background-color: #f2ab27;
   font-family: "M PLUS Rounded 1c", sans-serif;
