@@ -15,7 +15,6 @@ CarbonCounter.prototype.bindEvents = function () {
     });
 
     PubSub.subscribe('FormView:TripDetails', (evt) => {
-
         const distance = parseInt(evt.detail.distance);
         const co2e = evt.detail.co2e;
         const carbonTotal = this.calculateCO2e(co2e, distance);
@@ -25,14 +24,11 @@ CarbonCounter.prototype.bindEvents = function () {
             co2e: carbonTotal,
             trees: treesRequired,
             sc: socialCost
-        }
-
+        };
         PubSub.publish('CarbonCounter:OutputData', outputData);
-        const viableAlternatives = this.viableAlternatives(distance);
-        console.log(viableAlternatives);
-        
+        const viableAlternatives = this.viableAlternativeArray(distance);
         let alternativeTransport = [];
-        this.viableAlternatives.forEach((element) => {
+        viableAlternatives.forEach((element) => {
             let co2eEle = element.co2e;
             let co2eAlt = this.calculateCO2e(co2eEle, distance);
             if (co2e !== co2eEle) {
@@ -54,7 +50,7 @@ CarbonCounter.prototype.bindEvents = function () {
                         calories: caloriesBurned
                     };
                     alternativeTransport.push(alternativeData);
-                } else if (element.name === "Cycle ") {
+                } else if (element.name === "Cycle") {
                     const caloriesBurned = distance * 30;
                     const alternativeData = {
                         name: element.name,
@@ -81,7 +77,10 @@ CarbonCounter.prototype.bindEvents = function () {
                 }
 
             }
-        })
+        });
+        console.log(alternativeTransport);
+        PubSub.publish('CarbonCounter:AlternativeTravelOptions', alternativeTransport);
+
         // YOU ARE HERE - PUBLISH AND MOVE ON TO ALTERNATIVES VIEW, LOGIC TO INCLUDE CALORIES IF CYCLE OR WALK
     })
 
@@ -103,41 +102,31 @@ CarbonCounter.prototype.getData = function () {
         .catch(console.error);
 };
 
-CarbonCounter.prototype.viableAlternatives = function (distance){
-    const viableAlternatives = this.alternatives;
-    if (distance < 50) {
-        viableAlternatives.splice(0,1); // removes plane
-        return viableAlternatives;
-    } else if (distance < 100) {
-        viableAlternatives.splice(0,1).splice(6,1); // removes plane, walk
-        return viableAlternatives;
-    } else if (distance < 200) {
-        viableAlternatives.splice(0,1).splice(2,1).splice(4,2); // removes plane, tram, cycle, walk
-        return viableAlternatives;
-    } else if (distance < 600) {
-        viableAlternatives.splice(3,1).splice(5,2); // removes tram, cycle, walk
-        return viableAlternatives;
-    } else {
-        viableAlternatives.splice(3,1).splice(4,3); // removes tram, electric car, cycle, walk
-        return viableAlternatives;
-    }
-}
+CarbonCounter.prototype.viableAlternativeArray = function (distance) {
+        const viableAlternatives = [];
+        this.alternatives.forEach((element) => {
+                if (distance >= element.mindistance && distance <= element.maxdistance) {
+                    viableAlternatives.push(element);
+                }
+            })
+            return viableAlternatives;
+        }
 
-CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers = 1) {
-    const carbonTotal = co2e * distance / passengers; //kg co2e
-    return Math.round(carbonTotal * 100) / 100;
-};
+        CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers = 1) {
+            const carbonTotal = co2e * distance / passengers; //kg co2e
+            return Math.round(carbonTotal * 100) / 100;
+        };
 
-CarbonCounter.prototype.calculateTrees = function (carbonTotal) {
-    // assumes one tree absorbs 22kg CO2 / year
-    const trees = carbonTotal / (22 / 365); //number of trees in one day to absorb the trip CO2
-    return Math.round(trees);
-};
+        CarbonCounter.prototype.calculateTrees = function (carbonTotal) {
+            // assumes one tree absorbs 22kg CO2 / year
+            const trees = carbonTotal / (22 / 365); //number of trees in one day to absorb the trip CO2
+            return Math.round(trees);
+        };
 
-CarbonCounter.prototype.calculateSocialCost = function (carbonTotal) {
-    const socialCost = 0.025 * carbonTotal;
-    return Math.round(socialCost * 100) / 100;
-};
+        CarbonCounter.prototype.calculateSocialCost = function (carbonTotal) {
+            const socialCost = 0.025 * carbonTotal;
+            return Math.round(socialCost * 100) / 100;
+        };
 
 
-module.exports = CarbonCounter;
+        module.exports = CarbonCounter;
