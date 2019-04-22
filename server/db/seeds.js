@@ -2,56 +2,56 @@ use carbontrip;
 db.dropDatabase();
 
 db.transportmodes.insertOne({
-  typename: "terrain",
+  typename: "Terrain",
   type: [{
     name: "Sea",
-    typename: "ferry-type",
+    typename: "Ferry",
     type: [{
-      name: "foot passenger",
+      name: "Foot Passenger",
       co2e: 0.01874
     }, {
-      name: "car passenger",
+      name: "Car Passenger",
       co2e: 0.12953
     }]
   }, {
     name: "Air",
-    typename: "flight-type",
+    typename: "Flight Type",
     type: [{
       name: "Domestic",
-      typename: "class",
+      typename: "Class",
       type: [{
-        name: "economy",
+        name: "Economy",
         co2e: 0.0175,
       }, {
-        name: "business",
+        name: "Business",
         co2e: 0.02624,
       }]
     }, {
       name: "International",
-      typename: "class",
+      typename: "Class",
       type: [{
-        name: "economy",
+        name: "Economy",
         co2e: 0.01783,
       }, {
-        name: "premium economy",
+        name: "Premium Economy",
         co2e: 0.02853,
       }, {
-        name: "business",
+        name: "Business",
         co2e: 0.05172,
       }, {
-        name: "first",
+        name: "First",
         co2e: 0.07134,
       }]
     }]
   }, {
     name: "Land",
-    typename: "vehicle-type",
+    typename: "Transport Type",
     type: [{
         name: "Car",
-        typename: "size",
+        typename: "Size",
         type: [{
             name: "Up to 1.3L engine",
-            typename: "fuel-type",
+            typename: "Fuel-type",
             type: [{
                 name: "Diesel",
                 co2e: 0.14533
@@ -76,7 +76,7 @@ db.transportmodes.insertOne({
           },
           {
             name: "Up to 1.8L engine",
-            typename: "fuel-type",
+            typename: "Fuel-type",
             type: [{
                 name: "Diesel",
                 co2e: 0.17353
@@ -109,7 +109,7 @@ db.transportmodes.insertOne({
           },
           {
             name: "Over 1.8L engine",
-            typename: "fuel-type",
+            typename: "Fuel-type",
             type: [{
                 name: "Diesel",
                 co2e: 0.2152
@@ -197,15 +197,11 @@ db.transportmodes.insertOne({
           co2e: 0.02801
         }]
       }, {
-        name: "Taxi",
-        typename: "Category",
-        type: [{
-          name: "Regular Taxi",
-          co2e: 0.15344
-        }, {
-          name: "Black cab",
-          co2e: 0.2142
-        }]
+        name: "Cycle",
+        co2e: 0
+      }, {
+        name: "Walk",
+        co2e: 0
       }
     ]
   }]
