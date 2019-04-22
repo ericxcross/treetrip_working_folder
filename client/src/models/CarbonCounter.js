@@ -6,6 +6,7 @@ const CarbonCounter = function () {
     this.urlAlternativesData = 'http://localhost:3000/api/alternativeTransportModes';
     this.request = new RequestHelper(this.urlAllData);
     this.requestAlternatives = new RequestHelper(this.urlAlternativesData);
+    this.alternatives = null;
 };
 
 CarbonCounter.prototype.bindEvents = function () {
@@ -25,7 +26,11 @@ CarbonCounter.prototype.bindEvents = function () {
         console.log(outputData);
 
         PubSub.publish('CarbonCounter:OutputData', outputData);
+        
+    })
 
+    PubSub.subscribe('CarbonCounter:AlternativesDataFound',(evt)=>{
+        this.alternatives = evt.detail[0].alternatives; 
     })
 };
 
