@@ -1,1 +1,34 @@
-/* KEEP */
+body {
+  background-color: #1f1f1f;
+  color: #dedede;
+}
+
+#carbon-form {
+  text-align: center;
+  min-height: 666px;
+  display: block;
+}
+
+.select-1,
+.select-2,
+.select-3,
+.select-4 {
+  background-color: #ffffff20;
+  margin: 20%;
+  margin-top: 10%;
+  padding-top: 10%;
+  text-align: center;
+  color: #fff;
+}
+
+label {
+  font-family: "Major Mono Display", monospace;
+  text-align: center;
+}
+
+select {
+  display: inline-block;
+  font-size: 0.75em;
+  padding: 0em;
+  color: #fff;
+}
