@@ -24,7 +24,9 @@ FormView.prototype.render = function(formData) {
     if (filteredData.type !== undefined) {
       const newSelect = this.createSelect( filteredData, idNum );
       newSelect.addEventListener("change", evt => {
-        const selectIdNum = parseInt(evt.srcElement.classList[0].slice(7));
+        console.dir(evt);
+        console.log(evt.target.classList[0].slice(7))
+        const selectIdNum = parseInt(evt.target.classList[0].slice(7));
         if (idNum > selectIdNum){
           for (var i = selectIdNum; i < idNum; i++) {
             const redundantSelect = document.querySelector(`.select-${i+1}`);
@@ -35,6 +37,7 @@ FormView.prototype.render = function(formData) {
           }
           idNum = selectIdNum;
         }
+        console.log(evt.target.value);
         const selectedData = JSON.parse(evt.target.value);
         this.currentItems[filteredData.typename] = selectedData.name;
         this.currentItems.co2e = selectedData.co2e;
@@ -56,34 +59,43 @@ FormView.prototype.render = function(formData) {
 };
 
 FormView.prototype.createSelect = function(formData, idNum) {
-  const selectDiv = document.createElement('div');
-  selectDiv.classList.add(`select-${idNum}`);
-  selectDiv.id = formData.typename;
+  console.log(formData);
 
-  const selectElement = document.createElement("select");
-  selectElement.classList.add(`select-${idNum}`);
+  //CREATE FIELDSET
+  const fieldset = document.createElement("fieldset");
+  fieldset.classList.add(`select-${idNum}`);
+  fieldset.classList.add(`selectdiv`);
+  fieldset.id = formData.typename;
 
-  const selectLabel = document.createElement("label");
-  selectLabel.for = selectElement.id;
-  selectLabel.innerHTML = `${formData.typename.split("-").join(" ")}:`;
+  //DIV TITLE
+  const h2 = document.createElement('h2');
+  h2.innerHTML = formData.typename.split("-").join(" ");
+  fieldset.appendChild(h2);
 
-  const option = document.createElement("option");
-  option.value = '';
-  selectElement.appendChild(option);
-
+  //CREATE RADIO BUTTONS FOR EACH ITEM
   formData.type.forEach((item) => {
-    const option = document.createElement("option");
-    option.value = JSON.stringify(item);
-    option.innerHTML = item.name;
-    selectElement.appendChild(option);
+    //DIV CONTAINER WITH CONTAINING RADIO BUTTON AND LABELS
+    const radioDiv = document.createElement("radioDiv")
+
+    radioDiv.innerHTML = `
+      <image src = ${item.image} class = "select-image">
+      <label for = ${item.name}>${item.name}</label>
+    `;
+    //<input type = "radio" id = ${item.name} class="select-${idNum}" name = ${formData.typename} value = ${itemJson}>
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.id = item.name;
+    input.classList.add(`select-${idNum}`);
+    input.name = formData.typename;
+    input.value = JSON.stringify(item);
+
+    radioDiv.appendChild(input);
+    fieldset.appendChild(radioDiv);
   });
 
-  selectDiv.appendChild(selectLabel);
-  selectDiv.appendChild(selectElement);
+  this.form.appendChild(fieldset);
 
-  this.form.appendChild(selectDiv);
-
-  return selectElement;
+  return fieldset;
 };
 
 FormView.prototype.createDistanceInput = function(idNum) {

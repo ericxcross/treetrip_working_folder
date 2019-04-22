@@ -1,32 +1,40 @@
 body {
   scroll-behavior: smooth;
-  /* background-color: #f2f0eb10; */
+  background-color: #f2f0eb10;
   font-family: "Open Sans Condensed", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.logo {
-  padding-bottom: 5em;
-  border-bottom: solid black;
+header {
+  position: absolute;
+  top: 0px;
+  width: 100vw;
+  margin: 0;
 }
 
 #carbon-trip-logo {
-  display: flex;
+  display: block;
+  height: auto;
+  max-width:10em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 #carbon-form {
   text-align: center;
-  min-height: 666px;
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr 80vw 1fr;
 }
 
-.select-1,
-.select-2,
-.select-3,
-.select-4 {
-  background-color: black;
-  margin: 20%;
-  margin-top: 10%;
-  padding-top: 10%;
+.selectdiv {
+  grid-column: 2/ span 1;
+  background-color: #E6E6E6;
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+  height: 60vh;
   text-align: center;
   color: #5f8c4a;
 }

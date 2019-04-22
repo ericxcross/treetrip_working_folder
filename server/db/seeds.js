@@ -6,6 +6,7 @@ db.transportmodes.insertOne({
   type: [{
     name: "Sea",
     typename: "Ferry",
+    image: "images/icon_sea.png",
     type: [{
       name: "Foot Passenger",
       co2e: 0.01874
@@ -15,6 +16,7 @@ db.transportmodes.insertOne({
     }]
   }, {
     name: "Air",
+    image: "images/icon_air.png",
     typename: "Flight Type",
     type: [{
       name: "Domestic",
@@ -45,9 +47,11 @@ db.transportmodes.insertOne({
     }]
   }, {
     name: "Land",
+    image: "images/icon_land.png",
     typename: "Transport Type",
     type: [{
         name: "Car",
+        image: "images/icon_car.png",
         typename: "Size",
         type: [{
             name: "Up to 1.3L engine",
@@ -144,6 +148,7 @@ db.transportmodes.insertOne({
       },
       {
         name: "Motorcycle",
+        image: "images/icon_motorcycle.png",
         typename: "size",
         type: [{
             name: "Up to 125CC engine",
@@ -161,6 +166,7 @@ db.transportmodes.insertOne({
       },
       {
         name: "Rail",
+        image: "images/icon_train.png",
         typename: "Category",
         type: [{
             name: "National Rail",
@@ -182,6 +188,7 @@ db.transportmodes.insertOne({
       },
       {
         name: "Bus",
+        image: "images/icon_bus.png",
         typename: "Category",
         type: [{
           name: "Local bus (not London)",
@@ -198,9 +205,11 @@ db.transportmodes.insertOne({
         }]
       }, {
         name: "Cycle",
+        image: "images/icon_bicycle.png",
         co2e: 0
       }, {
         name: "Walk",
+        image: "images/icon_walk.png",
         co2e: 0
       }
     ]
@@ -217,34 +226,42 @@ db.transportmodes.insertOne({
 db.alternativeTransportModes.insertOne({
   alternatives: [{
     name: "Plane - Economy Class",
+    image: "images/icon_plane.png",
     co2e: 0.1597
   },
   {
     name: "Ferry",
+    image: "images/icon_boat.png",
     co2e: 0.112873
   },
   {
     name: "Train",
+    image: "images/icon_train.png",
     co2e: 0.04424
   },
   {
     name: "Tram",
+    image: "images/icon_tram.png",
     co2e: 0.03967
   },
   {
     name: "Bus",
+    image: "images/icon_bus.png",
     co2e: 0.10097
   },
   {
     name: "Electric Car",
+    image: "images/icon_car.png",
     co2e: 0
   },
   {
     name: "Cycle",
+    image: "images/icon_bicycle.png",
     co2e: 0
   },
   {
     name: "Walk",
+    image: "images/icon_walk.png",
     co2e: 0
   }]}
 )
