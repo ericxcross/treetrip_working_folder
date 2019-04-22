@@ -4,7 +4,7 @@ const PubSub = require('../helpers/pub_sub.js');
 const CarbonCounter = function () {
     this.urlAllData = 'http://localhost:3000/api/transportmodes';
     this.urlAlternativesData = 'http://localhost:3000/api/alternativeTransportModes';
-    this.request = new RequestHelper(this.url);
+    this.request = new RequestHelper(this.urlAllData);
     this.requestAlternatives = new RequestHelper(this.urlAlternativesData);
 };
 
@@ -23,7 +23,7 @@ CarbonCounter.prototype.bindEvents = function () {
             sc: this.calculateSocialCost(carbonTotal)
         }
         console.log(outputData);
-        
+
         PubSub.publish('CarbonCounter:OutputData', outputData);
 
     })
@@ -35,18 +35,23 @@ CarbonCounter.prototype.getData = function () {
             PubSub.publish('CarbonCounter:DataFound', data);
         })
         .catch(console.error);
+    this.requestAlternatives.get()
+        .then((data) => {
+            PubSub.publish('CarbonCounter:AlternativesDataFound', data);
+        })
+        .catch(console.error);
 };
 
 
-CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers=1) {
+CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers = 1) {
     const carbonTotal = co2e * distance / passengers; //kg co2e
     return carbonTotal;
 };
 
 CarbonCounter.prototype.calculateTrees = function (carbonTotal) {
     // assumes one tree absorbs 22kg CO2 / year
-    const trees = carbonTotal / (22/365); //number of trees in one day to absorb the trip CO2
-    
+    const trees = carbonTotal / (22 / 365); //number of trees in one day to absorb the trip CO2
+
     return Math.round(trees);
 };
 
