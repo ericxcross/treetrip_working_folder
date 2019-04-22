@@ -37,7 +37,7 @@ FormView.prototype.render = function(formData) {
         }
         const selectedData = JSON.parse(evt.target.value);
         this.currentItems[filteredData.typename] = selectedData.name;
-        if (selectedData.c02e !== undefined){this.currentItems['co2e'] = selectedData.co2e;};
+        this.currentItems.co2e = selectedData.co2e;
         action(selectedData);
       });
     }else{
