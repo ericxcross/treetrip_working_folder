@@ -2,8 +2,10 @@ const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js');
 
 const CarbonCounter = function () {
-    this.url = 'http://localhost:3000/api/transportmodes';
+    this.urlAllData = 'http://localhost:3000/api/transportmodes';
+    this.urlAlternativesData = 'http://localhost:3000/api/alternativeTransportModes';
     this.request = new RequestHelper(this.url);
+    this.requestAlternatives = new RequestHelper(this.urlAlternativesData);
 };
 
 CarbonCounter.prototype.bindEvents = function () {

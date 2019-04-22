@@ -214,8 +214,39 @@ db.transportmodes.insertOne({
 // Electric vehicle
 // Cycle
 // Walk
-db.alternativeTransportModes.insertOne(
-  {name: "Plane - Economy Class", co2e: },
+db.alternativeTransportModes.insertOne({
+  alternatives: [{
+    name: "Plane - Economy Class",
+    co2e: 0.1597
+  },
+  {
+    name: "Ferry",
+    co2e: 0.112873
+  },
+  {
+    name: "Train",
+    co2e: 0.04424
+  },
+  {
+    name: "Tram",
+    co2e: 0.03967
+  },
+  {
+    name: "Bus",
+    co2e: 0.10097
+  },
+  {
+    name: "Electric Car",
+    co2e: 0
+  },
+  {
+    name: "Cycle",
+    co2e: 0
+  },
+  {
+    name: "Walk",
+    co2e: 0
+  }]}
 )
 // {
 //   name: "average",
