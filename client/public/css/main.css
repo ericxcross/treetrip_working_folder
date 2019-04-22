@@ -1,7 +1,16 @@
-html {
+body {
   scroll-behavior: smooth;
   background-color: #f2f0eb10;
   font-family: "Open Sans Condensed", sans-serif;
+}
+
+.logo {
+  padding-bottom: 5em;
+  border-bottom: solid black;
+}
+
+#carbon-trip-logo {
+  display: flex;
 }
 
 #carbon-form {
@@ -14,15 +23,12 @@ html {
 .select-2,
 .select-3,
 .select-4 {
-  background-color: #ffffff;
+  background-color: black;
   margin: 20%;
   margin-top: 10%;
   padding-top: 10%;
   text-align: center;
   color: #5f8c4a;
-}
-
-.select-1 {
 }
 
 label {
