@@ -52,7 +52,7 @@ db.transportmodes.insertOne( {
         typename: "size",
         type: [
           {
-            name: "small",
+            name: "Up to 1.3L engine",
             typename: "fuel-type",
             type: [
               {
@@ -78,7 +78,7 @@ db.transportmodes.insertOne( {
             ]
           },
           {
-            name: "medium",
+            name: "Up to 1.8L engine",
             typename: "fuel-type",
             type: [
               {
@@ -112,7 +112,7 @@ db.transportmodes.insertOne( {
             ]
           },
           {
-            name: "large",
+            name: "Over 1.8L engine",
             typename: "fuel-type",
             type: [
               {
@@ -152,15 +152,15 @@ db.transportmodes.insertOne( {
         typename: "size",
         type: [
           {
-            name: "small",
+            name: "Up to 125CC engine",
             co2e: 0.08463
           },
           {
-            name: "medium",
+            name: "Up to 700CC engine",
             co2e: 0.1031
           },
           {
-            name: "large",
+            name: "Over 700CC engine",
             co2e: 0.13528
           }
         ]
