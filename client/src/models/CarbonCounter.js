@@ -12,13 +12,18 @@ CarbonCounter.prototype.bindEvents = function () {
     });
 
     PubSub.subscribe('FormView:TripDetails', (evt) => {
-        console.log(evt.detail);
+        const distance = parseInt(evt.detail.distance);
+        const co2e = evt.detail.co2e;
+        const carbonTotal = this.calculateCO2e(co2e, distance)
+        const outputData = {
+            co2e: carbonTotal,
+            trees: this.calculateTrees(carbonTotal),
+            sc: this.calculateSocialCost(carbonTotal)
+        }
+        console.log(outputData);
         
-        const distance = evt.detail; //tbc evt.detail.????
-        const co2e = evt.detail ; //tbc evt.detail.????
-        const carbonTotal = this.calculateCO2e(co2e, distance);
-        this.calculateTrees(carbonTotal);
-        this.calculateSocialCost(carbonTotal);
+        PubSub.publish('CarbonCounter:OutputData', outputData);
+
     })
 };
 
@@ -31,23 +36,21 @@ CarbonCounter.prototype.getData = function () {
 };
 
 
-CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers) {
+CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers=1) {
     const carbonTotal = co2e * distance / passengers; //kg co2e
-    // PubSub.publish('CarbonCounter:OutputDataCO2e', carbonTotal);
     return carbonTotal;
 };
 
 CarbonCounter.prototype.calculateTrees = function (carbonTotal) {
     // assumes one tree absorbs 22kg CO2 / year
     const trees = carbonTotal / (22/365); //number of trees in one day to absorb the trip CO2
-    // PubSub.publish('CarbonCounter:OutputDataTrees', trees)
-    return trees;
+    
+    return Math.round(trees);
 };
 
 CarbonCounter.prototype.calculateSocialCost = function (carbonTotal) {
-    const socialCost = 0.00025 * carbonTotal;
-    // PubSub.publish('CarbonCounter:OutputDataSC', socialCost);
-    return socialCost;
+    const socialCost = 0.025 * carbonTotal;
+    return Math.round(socialCost * 100) / 100;
 };
 
 
