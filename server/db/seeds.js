@@ -1,8 +1,11 @@
 use carbontrip;
 db.dropDatabase();
 
-db.transportmodes.insertMany( [{
+db.transportmodes.insertOne( {
+  typename: "terrain",
+  type:[{
   name: "sea",
+  typename: "ferry-type",
   type: [{
     name: "foot passenger",
     co2e: 0.01874
@@ -12,9 +15,11 @@ db.transportmodes.insertMany( [{
   }]
 },{
   name: "air",
+  typename: "flight-type",
   type: [{
-      name: "short-haul",
-      class: [{
+      name: "domestic",
+      typename: "class",
+      type: [{
         name: "economy",
         co2e: 0.0175,
       },{
@@ -22,8 +27,9 @@ db.transportmodes.insertMany( [{
         co2e: 0.02624,
       }]
     },{
-      name: "long-haul",
-      class: [{
+      name: "international",
+      typename: "class",
+      type: [{
         name: "economy",
         co2e: 0.01783,
       },{
@@ -39,13 +45,16 @@ db.transportmodes.insertMany( [{
     }]
 },{
     name: "land",
+    typename: "vehicle-type",
     type: [
       {
         name: "car",
-        sizes: [
+        typename: "size",
+        type: [
           {
             name: "small",
-            fuel: [
+            typename: "fuel-type",
+            type: [
               {
                 name: "Diesel",
                 co2e: 0.14533
@@ -59,7 +68,7 @@ db.transportmodes.insertMany( [{
                 co2e: 0.10957
               },
               {
-                name: "Plug-In Hybrid Electric Vehicles",
+                name: "Plug-In Hybrid Electric Vehicle",
                 co2e: 0.02255
               },
               {
@@ -70,7 +79,8 @@ db.transportmodes.insertMany( [{
           },
           {
             name: "medium",
-            fuel: [
+            typename: "fuel-type",
+            type: [
               {
                 name: "Diesel",
                 co2e: 0.17353
@@ -103,7 +113,8 @@ db.transportmodes.insertMany( [{
           },
           {
             name: "large",
-            fuel: [
+            typename: "fuel-type",
+            type: [
               {
                 name: "Diesel",
                 co2e: 0.2152
@@ -125,41 +136,8 @@ db.transportmodes.insertMany( [{
                 co2e: 0.26704
               },
               {
-                name: "Plug-In Hybrid Electric Vehicles",
+                name: "Plug-In Hybrid Electric Vehicle",
                 co2e: 0.07717
-              },
-              {
-                name: "Electric Vehicle",
-                co2e: 0.0
-              }
-            ]
-          },
-          {
-            name: "average",
-            fuel: [
-              {
-                name: "Diesel",
-                co2e: 0.17753
-              },
-              {
-                name: "Petrol",
-                co2e: 0.18368
-              },
-              {
-                name: "Hybrid",
-                co2e: 0.12568
-              },
-              {
-                name: "CNG",
-                co2e: 0.17925
-              },
-              {
-                name: "LPG",
-                co2e: 0.20022
-              },
-              {
-                name: "Plug-In Hybrid Electric Vehicles",
-                co2e: 0.07096
               },
               {
                 name: "Electric Vehicle",
@@ -170,46 +148,59 @@ db.transportmodes.insertMany( [{
         ]
       },
       {
-        name: "motorbike",
-        sizes: [
+        name: "motorcycle",
+        typename: "size",
+        type: [
           {
             name: "small",
-            fuel: [
-              {
-                name: "Diesel",
-                co2e: 0.08463
-              }
-            ]
+            co2e: 0.08463
           },
           {
             name: "medium",
-            fuel: [
-              {
-                name: "Diesel",
-                co2e: 0.1031
-              }
-            ]
+            co2e: 0.1031
           },
           {
             name: "large",
-            fuel: [
-              {
-                name: "Diesel",
-                co2e: 0.13528
-              }
-            ]
-          },
-          {
-            name: "average",
-            fuel: [
-              {
-                name: "Diesel",
-                co2e: 0.11529
-              }
-            ]
+            co2e: 0.13528
           }
         ]
-      },
+      }
     ]
   }
-] );
+]});
+
+
+// {
+//   name: "average",
+//   typename: "fuel type",
+//   type: [
+//     {
+//       name: "Diesel",
+//       co2e: 0.17753
+//     },
+//     {
+//       name: "Petrol",
+//       co2e: 0.18368
+//     },
+//     {
+//       name: "Hybrid",
+//       co2e: 0.12568
+//     },
+//     {
+//       name: "CNG",
+//       co2e: 0.17925
+//     },
+//     {
+//       name: "LPG",
+//       co2e: 0.20022
+//     },
+//     {
+//       name: "Plug-In Hybrid Electric Vehicles",
+//       co2e: 0.07096
+//     },
+//     {
+//       name: "Electric Vehicle",
+//       co2e: 0.0
+//     }
+//   ]
+// }
