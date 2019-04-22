@@ -1,6 +1,7 @@
-body {
-  background-color: #1f1f1f;
-  color: #dedede;
+html {
+  scroll-behavior: smooth;
+  background-color: #f2f0eb10;
+  font-family: "Open Sans Condensed", sans-serif;
 }
 
 #carbon-form {
@@ -13,22 +14,51 @@ body {
 .select-2,
 .select-3,
 .select-4 {
-  background-color: #ffffff20;
+  background-color: #ffffff;
   margin: 20%;
   margin-top: 10%;
   padding-top: 10%;
   text-align: center;
-  color: #fff;
+  color: #5f8c4a;
+}
+
+.select-1 {
 }
 
 label {
-  font-family: "Major Mono Display", monospace;
+  font-family: "M PLUS Rounded 1c", sans-serif;
   text-align: center;
 }
 
-select {
-  display: inline-block;
-  font-size: 0.75em;
-  padding: 0em;
-  color: #fff;
+#result-total {
+  margin-top: 3em;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100%;
+  box-sizing: content-box;
+}
+
+#co2-result {
+  box-sizing: content-box;
+  color: white;
+  background-color: #d94d1a;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  width: 250px;
+}
+
+#tree-result {
+  box-sizing: content-box;
+  color: white;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  background-color: #325947;
+  width: 250px;
+}
+
+#sc-result {
+  /* box-sizing: content-box; */
+  color: white;
+  background-color: #f2ab27;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  width: 250px;
 }
