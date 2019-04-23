@@ -21,6 +21,7 @@ ResultTotalView.prototype.renderCO2e = function(co2e) {
   const co2ePextra = document.createElement("br");
   const co2eH2 = document.createElement("h2");
   co2eH2.innerHTML = `${co2e}kg`;
+
   const co2eP = document.createElement("p");
   co2eP.innerHTML = `of CO<sub>2</sub>e`;
 
