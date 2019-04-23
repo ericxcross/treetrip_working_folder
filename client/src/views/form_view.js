@@ -74,11 +74,6 @@ FormView.prototype.createSelect = function(formData, idNum) {
     const option = document.createElement("option");
     option.value = JSON.stringify(item);
     option.innerHTML = item.name;
-    // if (item === "car") {
-    //   const transport = document.createElement("img");
-    //   transport.src = "../public/images/icon_car.png";
-    //   option.appendChild(transport);
-    // }
     selectElement.appendChild(option);
   });
 
