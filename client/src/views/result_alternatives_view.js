@@ -26,12 +26,12 @@ ResultAlternativeView.prototype.bindEvents = function() {
 
     const seriesData = [
       {
-        name: "Additional trees required",
-        data: treesChangeAdditional
-      },
-      {
         name: "Less trees required",
         data: treesChangeLess
+      },
+      {
+        name: "Additional trees required",
+        data: treesChangeAdditional
       }
     ];
 
