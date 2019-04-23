@@ -9,9 +9,11 @@ db.transportmodes.insertOne({
     image: "images/icon_sea.png",
     type: [{
       name: "Foot Passenger",
+      image: "images/icon_passenger_ferry.png",
       co2e: 0.01874
     }, {
       name: "Car Passenger",
+      image: "images/icon_car_ferry.png",
       co2e: 0.12953
     }]
   }, {
@@ -20,28 +22,36 @@ db.transportmodes.insertOne({
     typename: "Flight Type",
     type: [{
       name: "Domestic",
+      image: "images/icon_domestic_plane.png",
       typename: "Class",
       type: [{
         name: "Economy",
+        image: "images/icon_economy_class.png",
         co2e: 0.1597,
       }, {
         name: "Business",
+        image: "images/icon_business_class.png",
         co2e: 0.23955,
       }]
     }, {
       name: "International",
+      image: "images/icon_plane.png",
       typename: "Class",
       type: [{
         name: "Economy",
+        image: "images/icon_economy_class.png",
         co2e: 0.13996470332751,
       }, {
         name: "Premium Economy",
+        image: "images/icon_premium_class.png",
         co2e: 0.22395,
       }, {
         name: "Business",
+        image: "images/icon_business_class.png",
         co2e: 0.4059,
       }, {
         name: "First",
+        image: "images/icon_first_class.png",
         co2e: 0.55987,
       }]
     }]
@@ -55,6 +65,7 @@ db.transportmodes.insertOne({
         typename: "Size",
         type: [{
             name: "Up to 1.3L engine",
+            image: "images/icon_small_engine.png",
             typename: "Fuel-type",
             type: [{
                 name: "Diesel",
@@ -74,12 +85,14 @@ db.transportmodes.insertOne({
               },
               {
                 name: "Electric Vehicle",
+                image: "images/icon_electric.png",
                 co2e: 0.0
               }
             ]
           },
           {
             name: "Up to 1.8L engine",
+            image: "images/icon_engine.png",
             typename: "Fuel-type",
             type: [{
                 name: "Diesel",
@@ -107,39 +120,48 @@ db.transportmodes.insertOne({
               },
               {
                 name: "Electric Vehicle",
+                image: "images/icon_electric.png",
                 co2e: 0.0
               }
             ]
           },
           {
             name: "Over 1.8L engine",
+            image: "images/icon_large_engine.png",
             typename: "Fuel-type",
             type: [{
                 name: "Diesel",
+                image: "images/icon_fuel.png",
                 co2e: 0.2152
               },
               {
                 name: "Petrol",
+                image: "images/icon_fuel.png",
                 co2e: 0.28411
               },
               {
                 name: "Hybrid",
+                image: "images/icon_fuel.png",
                 co2e: 0.16134
               },
               {
                 name: "CNG",
+                image: "images/icon_fuel.png",
                 co2e: 0.23851
               },
               {
                 name: "LPG",
+                image: "images/icon_fuel.png",
                 co2e: 0.26704
               },
               {
                 name: "Plug-In Hybrid Electric Vehicle",
+                image: "images/icon_fuel.png",
                 co2e: 0.07717
               },
               {
                 name: "Electric Vehicle",
+                image: "images/icon_electric.png",
                 co2e: 0.0
               }
             ]
@@ -152,14 +174,17 @@ db.transportmodes.insertOne({
         typename: "size",
         type: [{
             name: "Up to 125CC engine",
+            image: "images/icon_small_engine.png",
             co2e: 0.08463
           },
           {
             name: "Up to 700CC engine",
+            image: "images/icon_engine.png",
             co2e: 0.1031
           },
           {
             name: "Over 700CC engine",
+            image: "images/icon_large_engine.png",
             co2e: 0.13528
           }
         ]
@@ -168,20 +193,25 @@ db.transportmodes.insertOne({
         name: "Rail",
         image: "images/icon_train.png",
         typename: "Category",
-        type: [{
-            name: "National Rail",
-            co2e: 0.04424
-          },
+        type: [
           {
             name: "International Rail",
+            image: "images/icon_train.png",
             co2e: 0.01226
           },
           {
+            name: "National Rail",
+            image: "images/icon_slow_train.png",
+            co2e: 0.04424
+          },
+          {
             name: "Light Rail and Tram",
+            image: "images/icon_tram.png",
             co2e: 0.03967
           },
           {
             name: "Underground Metro",
+            image: "images/icon_metro.png",
             co2e: 0.0376
           }
         ]
@@ -191,16 +221,16 @@ db.transportmodes.insertOne({
         image: "images/icon_bus.png",
         typename: "Category",
         type: [{
-          name: "Local bus (not London)",
+          name: "Local Bus",
+          image: "images/icon_local_bus.png",
           co2e: 0.12007
         }, {
-          name: "Local London bus",
+          name: "London Bus",
+          image: "images/icon_double_decker_bus.png",
           co2e: 0.07211
         }, {
-          name: "Average local bus",
-          co2e: 0.10097
-        }, {
           name: "Coach",
+          image: "images/icon_bus.png",
           co2e: 0.02801
         }]
       }, {

@@ -18,6 +18,7 @@ FormView.prototype.render = function(formData) {
 
   const action = (filteredData) => {
     idNum ++;
+    console.log(filteredData);
     if (filteredData.type !== undefined) {
       const newSelect = this.createSelect( filteredData, idNum );
       newSelect.scrollIntoView({
@@ -69,6 +70,7 @@ FormView.prototype.createSelect = function(formData, idNum) {
 
   //CREATE RADIO BUTTONS FOR EACH ITEM
   formData.type.forEach((item) => {
+    console.log(item.name);
     const input = document.createElement("input");
     input.type = "radio";
     input.id = item.name;
@@ -134,7 +136,7 @@ FormView.prototype.createSubmitButton = function(idNum) {
   const submit = document.createElement("input");
   submit.id = "submitbutton";
   submit.type = "submit";
-  submit.name = "Calculate";
+  submit.value = "calculate trip impact";
   submit.classList.add(`select-${idNum}`);
   submit.classList.add(`button`);
   return submit;
