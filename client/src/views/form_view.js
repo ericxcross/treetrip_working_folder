@@ -26,6 +26,7 @@ FormView.prototype.render = function(formData) {
             block: 'center',
             inline: 'center'})
       newSelect.addEventListener("change", evt => {
+        console.log('select');
         const selectIdNum = parseInt(evt.target.classList[0].slice(7));
         if (idNum > selectIdNum){
           for (var i = selectIdNum; i < idNum; i++) {
@@ -65,7 +66,7 @@ FormView.prototype.createSelect = function(formData, idNum) {
 
   //DIV TITLE
   const h2 = document.createElement('h2');
-  h2.innerHTML = "Choose a " + formData.typename.split("-").join(" ");
+  h2.innerHTML = "Choose a " + textParse(formData.typename);
   fieldset.appendChild(h2);
 
   //CREATE RADIO BUTTONS FOR EACH ITEM
@@ -81,7 +82,7 @@ FormView.prototype.createSelect = function(formData, idNum) {
     fieldset.appendChild(input);
     fieldset.innerHTML += `
       <label for=${item.name} class="radiolabel button">
-        <image class="radioimage" src=${item.image}><br>${item.name}</label>
+        <image class="radioimage" src=${item.image}><br>${textParse(item.name)}</label>
     `;
   });
 
@@ -147,5 +148,9 @@ FormView.prototype.handleSubmit = function(evt) {
   this.form.innerHTML = '';
   PubSub.publish('FormView:TripDetails', this.currentItems);
 };
+
+const textParse = function(text){
+  return text.split("_").join(" ")
+}
 
 module.exports = FormView;
