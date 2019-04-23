@@ -6,9 +6,6 @@ const FormView = function(form) {
 };
 
 FormView.prototype.bindEvents = function() {
-  this.form.addEventListener("load", evt => {
-    PubSub.publish("FormView:RequestData");
-  });
   PubSub.subscribe("CarbonCounter:DataFound", evt => {
     this.render(evt.detail);
   });
@@ -19,13 +16,19 @@ FormView.prototype.render = function(formData) {
 
   let idNum = 0;
 
-  const action = filteredData => {
-    idNum++;
+  const action = (filteredData) => {
+    idNum ++;
+    console.log(filteredData);
     if (filteredData.type !== undefined) {
-      const newSelect = this.createSelect(filteredData, idNum);
+      const newSelect = this.createSelect( filteredData, idNum );
+      newSelect.scrollIntoView({
+            behavior: 'auto',
+            block: 'center',
+            inline: 'center'})
       newSelect.addEventListener("change", evt => {
-        const selectIdNum = parseInt(evt.srcElement.classList[0].slice(7));
-        if (idNum > selectIdNum) {
+        console.log('select');
+        const selectIdNum = parseInt(evt.target.classList[0].slice(7));
+        if (idNum > selectIdNum){
           for (var i = selectIdNum; i < idNum; i++) {
             const redundantSelect = document.querySelector(`.select-${i + 1}`);
             if (redundantSelect !== null) {
@@ -40,10 +43,9 @@ FormView.prototype.render = function(formData) {
         this.currentItems.co2e = selectedData.co2e;
         action(selectedData);
       });
-    } else {
-      this.createDistanceInput(idNum);
-      idNum++;
-      const submit = this.createSubmit(idNum);
+    }else{
+
+      const submit = this.createSubmitInput(idNum);
 
       submit.addEventListener("click", evt => {
         this.handleSubmit(evt);
@@ -55,73 +57,99 @@ FormView.prototype.render = function(formData) {
 };
 
 FormView.prototype.createSelect = function(formData, idNum) {
-  const selectDiv = document.createElement("div");
-  selectDiv.classList.add(`select-${idNum}`);
-  selectDiv.id = formData.typename;
+  //CREATE FIELDSET
+  const fieldset = document.createElement("div");
+  fieldset.classList.add(`select-${idNum}`);
+  fieldset.classList.add(`selectcontainer`);
+  fieldset.id = formData.typename;
 
-  const selectElement = document.createElement("select");
-  selectElement.classList.add(`select-${idNum}`);
+  //DIV TITLE
+  const h2 = document.createElement('h2');
+  h2.innerHTML = "Choose a " + textParse(formData.typename);
+  fieldset.appendChild(h2);
 
-  const selectLabel = document.createElement("label");
-  selectLabel.for = selectElement.id;
-  selectLabel.innerHTML = `${formData.typename.split("-").join(" ")}:`;
+  //CREATE RADIO BUTTONS FOR EACH ITEM
+  formData.type.forEach((item) => {
+    console.log(item.name);
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.id = item.name;
+    input.classList.add(`select-${idNum}`);
+    input.name = formData.typename;
+    input.value = JSON.stringify(item);
 
-  const option = document.createElement("option");
-  option.value = "";
-  selectElement.appendChild(option);
-
-  formData.type.forEach(item => {
-    const option = document.createElement("option");
-    option.value = JSON.stringify(item);
-    option.innerHTML = item.name;
-    selectElement.appendChild(option);
+    fieldset.appendChild(input);
+    fieldset.innerHTML += `
+      <label for=${item.name} class="radiolabel button">
+        <image class="radioimage" src=${item.image}><br>${textParse(item.name)}</label>
+    `;
   });
 
-  selectDiv.appendChild(selectLabel);
-  selectDiv.appendChild(selectElement);
+  this.form.appendChild(fieldset);
 
-  this.form.appendChild(selectDiv);
-
-  return selectElement;
+  return fieldset;
 };
 
-FormView.prototype.createDistanceInput = function(idNum) {
-  const inputDiv = document.createElement("div");
+FormView.prototype.createSubmitInput = function(idNum) {
+
+  const inputDiv = document.createElement('div');
   inputDiv.classList.add(`select-${idNum}`);
-  inputDiv.id = "distance";
+  inputDiv.classList.add(`distancecontainer`);
 
-  const inputLabel = document.createElement("label");
-  inputLabel.for = "distance";
-  inputLabel.innerHTML = "Distance Travelled";
+  const inputLabel = document.createElement("h2");
+  inputLabel.innerHTML = 'Distance Travelled (km)';
+  inputDiv.appendChild(inputLabel);
 
+  const distanceInput = this.createDistanceField(idNum);
+  inputDiv.appendChild(distanceInput);
+
+  distanceInput.addEventListener("input", evt=>{
+    this.currentItems['distance'] = evt.target.value;
+  });
+
+  const submit = this.createSubmitButton(idNum);
+  inputDiv.appendChild(submit);
+
+  this.form.appendChild(inputDiv);
+
+  inputDiv.scrollIntoView({
+    behavior: 'auto',
+    block: 'center',
+    inline: 'center'})
+
+  return submit;
+};
+
+FormView.prototype.createDistanceField = function(idNum) {
   const distanceInput = document.createElement("input");
   distanceInput.type = "number";
   distanceInput.name = "distance";
   distanceInput.min = 0;
   distanceInput.step = 1;
-  // distanceInput.classList.add(`select-${idNum}`);
-
-  inputDiv.appendChild(inputLabel);
-  inputDiv.appendChild(distanceInput);
-
-  this.form.appendChild(inputDiv);
+  distanceInput.placeholder = "enter distance travelled in kilometres"
+  distanceInput.classList.add(`select-${idNum}`);
 
   return distanceInput;
 };
 
-FormView.prototype.createSubmit = function(idNum) {
+FormView.prototype.createSubmitButton = function(idNum) {
   const submit = document.createElement("input");
+  submit.id = "submitbutton";
   submit.type = "submit";
-  submit.name = "Calculate";
-  // submit.classList.add(`select-${idNum}`);
-  this.form.appendChild(submit);
+  submit.value = "calculate trip impact";
+  submit.classList.add(`select-${idNum}`);
+  submit.classList.add(`button`);
   return submit;
 };
 
 FormView.prototype.handleSubmit = function(evt) {
   evt.preventDefault();
-  this.currentItems["distance"] = evt.target.form.distance.value;
-  PubSub.publish("FormView:TripDetails", this.currentItems);
+  this.form.innerHTML = '';
+  PubSub.publish('FormView:TripDetails', this.currentItems);
 };
+
+const textParse = function(text){
+  return text.split("_").join(" ")
+}
 
 module.exports = FormView;

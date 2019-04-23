@@ -26,12 +26,12 @@ ResultAlternativeView.prototype.bindEvents = function() {
 
     const seriesData = [
       {
-        name: "Additional trees required",
-        data: treesChangeAdditional
-      },
-      {
         name: "Less trees required",
         data: treesChangeLess
+      },
+      {
+        name: "Additional trees required",
+        data: treesChangeAdditional
       }
     ];
 
@@ -64,7 +64,7 @@ ResultAlternativeView.prototype.bindEvents = function() {
         text: "Transport Alternatives"
       },
       subtitle: {
-        text: "What impact does other transport modes have?"
+        text: "Showing the difference in trees required to absorb the trip CO2 in 1 day"
       },
       xAxis: [
         {
@@ -97,12 +97,12 @@ ResultAlternativeView.prototype.bindEvents = function() {
         }
       },
 
-      // tooltip: {
-      //     formatter: function () {
-      //         return '<b>CO2e' + this.point.category + '</b><br/>' +
-      //             'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
-      //     }
-      // },
+      tooltip: {
+          formatter: function () {
+              return '<b>' + this.point.category + '</b><br/>' +
+                  'Tree Difference: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
+          }
+      },
 
       series: seriesData
     });
