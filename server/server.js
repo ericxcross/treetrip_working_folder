@@ -14,8 +14,11 @@ MongoClient.connect("mongodb://localhost:27017")
   .then(client => {
     const db = client.db("carbontrip");
     const collection = db.collection("transportmodes");
+    const collectionAlt = db.collection("alternativeTransportModes");
     const router = createRouter(collection);
+    const routerAlt = createRouter(collectionAlt);
     app.use("/api/transportmodes", router);
+    app.use("/api/alternativeTransportModes", routerAlt)
   })
   .catch(console.err);
 
