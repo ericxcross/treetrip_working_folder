@@ -157,10 +157,20 @@ hr {
   background-color: black;
   border-color: black;
 }
-.highcharts-color-0 {
+
+.highcharts-color-1 .highcharts-point {
   fill: #99d47f;
-  stroke: #ce3815;
 }
+
+.highcharts-point {
+  fill: #434348;
+}
+
+.highcharts-color-0 {
+  fill: #434348;
+  stroke: none;
+}
+
 #alternatives {
   display: block;
   margin-left: auto;
