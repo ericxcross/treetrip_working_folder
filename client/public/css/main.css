@@ -159,15 +159,16 @@ hr {
 }
 
 .highcharts-color-1 .highcharts-point {
-  fill: #99d47f;
+  fill: #434348;
+  stroke: none;
 }
 
 .highcharts-point {
-  fill: #434348;
+  fill: #99d47f;
 }
 
 .highcharts-color-0 {
-  fill: #434348;
+  fill: #99d47f;
   stroke: none;
 }
 

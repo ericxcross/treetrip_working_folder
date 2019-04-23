@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>CarbonTrip</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+    />
 
-<head>
-  <meta charset="utf-8" />
-  <title>CarbonTrip</title>
-  <link rel="stylesheet" type="text/css" href="css/main.css" />
-  <script src="js/bundle.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" />
-  <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="js/bundle.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="jquery.counterup.min.js"></script>
 
-
+    <script>
+      jQuery(document).ready(function($) {
+        $(".counter").counterUp({
+          delay: 10,
+          time: 1000
+        });
+      });
+    </script>
+  </head>
 
   <body>
     <div class="logo">
@@ -26,21 +42,21 @@
       </div>
     </div>
 
-    <hr width="2" size="300" class="vertical-line" />
-
-    <form id="carbon-form"></form>
-
-    <hr width="2" size="300" class="vertical-line" />
+    <!-- <hr width="2" size="300" class="vertical-line" /> -->
 
     <div id="landing-page">
       <div id="button"></div>
     </div>
 
-    <div id="nav-bar-elements">
-      <div id="elements"></div>
-    </div>
+    <form id="carbon-form"></form>
 
-    <div id="result-total"></div>
+    <!-- <hr width="2" size="300" class="vertical-line" /> -->
+
+    <!-- <div id="nav-bar-elements">
+      <div id="elements"></div>
+    </div> -->
+
+    <div id="result-total" id="counter"></div>
 
     <div id="alternatives" style="width:100%; height:400px;"></div>
 
