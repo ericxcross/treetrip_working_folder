@@ -30,8 +30,8 @@ FormView.prototype.render = function(formData) {
         const selectIdNum = parseInt(evt.target.classList[0].slice(7));
         if (idNum > selectIdNum){
           for (var i = selectIdNum; i < idNum; i++) {
-            const redundantSelect = document.querySelector(`.select-${i+1}`);
-            if (redundantSelect !== null){
+            const redundantSelect = document.querySelector(`.select-${i + 1}`);
+            if (redundantSelect !== null) {
               delete this.currentItems[redundantSelect.id];
               redundantSelect.remove();
             }
@@ -49,8 +49,7 @@ FormView.prototype.render = function(formData) {
 
       submit.addEventListener("click", evt => {
         this.handleSubmit(evt);
-      })
-
+      });
     }
   };
 

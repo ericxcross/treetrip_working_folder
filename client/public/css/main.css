@@ -1,3 +1,5 @@
+@import "https://code.highcharts.com/css/highcharts.css";
+
 html {
   scroll-behavior: smooth;
   background-color: #fafaef;
@@ -189,15 +191,21 @@ input[type=submit]::-webkit-inner-spin-button {
 
 #result-total {
   margin-top: 3em;
-  display: flex wrap;
+  display: grid;
+  flex-direction: row;
   justify-content: space-evenly;
-  text-align: center;
-  width: 100%;
-  box-sizing: content-box;
+}
+
+.hexagon {
+  grid-column:
+  width: 220px;
+  height: 192px;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 #co2-result {
-  box-sizing: content-box;
+  background: url(../images/resultview-co2e.png);
   color: white;
   background-color: #d94d1a;
   font-family: "Dosis", sans-serif;
@@ -205,7 +213,7 @@ input[type=submit]::-webkit-inner-spin-button {
 }
 
 #tree-result {
-  box-sizing: content-box;
+  background: url(../images/resultview-trees.png);
   color: white;
   font-family: "Dosis", sans-serif;
   background-color: #325947;
@@ -213,9 +221,38 @@ input[type=submit]::-webkit-inner-spin-button {
 }
 
 #sc-result {
-  box-sizing: content-box;
+  background: url(../images/resultview-sc.png);
   color: white;
   background-color: #f2ab27;
   font-family: "Dosis", sans-serif;
   width: 250px;
+}
+
+
+
+
+/* CHARTS STYLING */
+.highcharts-color-1 .highcharts-point {
+ fill: #434348;
+ stroke: none;
+}
+
+.highcharts-point {
+ fill: #99d47f;
+}
+
+.highcharts-color-0 {
+ fill: #99d47f;
+ stroke: none;
+}
+
+#alternatives {
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
+ margin-top: 1em;
+ margin-bottom: 5em;
+}
+.highcharts-background {
+ fill: #f2f0eb30;
 }
