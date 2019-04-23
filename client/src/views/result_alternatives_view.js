@@ -12,42 +12,98 @@ ResultAlternativeView.prototype.bindEvents = function () {
         // separate incoming data
         const alternativesData = evt.detail;
         let transportTypes = [];
-        let treesChange = [];
+        let treesChangeAdditional = [];
+        let treesChangeLess = [];
         alternativesData.forEach((type) => {
             transportTypes.push(type.name);
-            treesChange.push(type.treesChange);
+            if (type.treesChange > 0) {
+                treesChangeAdditional.push(type.treesChange);
+                treesChangeLess.push(0);
+            } else {
+                treesChangeAdditional.push(0);
+                treesChangeLess.push(type.treesChange);
+            };
         });
+
         const seriesData = [{
-            name: 'Trees',
-            data: treesChange
-        }]
-        var myChart = Highcharts.chart('alternatives', {
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Transport Alternatives'
-            },
-            xAxis: {
-                categories: transportTypes
-            },
-            yAxis: {
+            name: 'Additional trees required',
+            data: treesChangeAdditional
+        },{
+            name: 'Less trees required',
+            data: treesChangeLess
+        }];
+
+        // Highcharts.chart('alternatives', {
+        //     chart: {
+        //         type: 'bar'
+        //     },
+        //     title: {
+        //         text: 'Transport Alternatives'
+        //     },
+        //     xAxis: {
+        //         categories: transportTypes
+        //     },
+        //     yAxis: {
+        //         title: {
+        //             text: 'Difference in Trees'
+        //         }
+        //     },
+        //     series: seriesData
+
+        // });
+
+        // Data gathered from http://populationpyramid.net/germany/2015/
+
+
+
+Highcharts.chart('alternatives', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Transport Alternatives'
+    },
+    subtitle: {
+        text: 'What impact does other transport modes have?'
+    },
+    xAxis: [{
+        categories: transportTypes,
+        reversed: false,
+        labels: {
+            step: 1
+        }
+    }, { // mirror axis on right side
+        opposite: true,
+        reversed: false,
+        categories: transportTypes,
+        linkedTo: 0,
+        labels: {
+            step: 1
+        }
+    }],
+    yAxis: {
                 title: {
                     text: 'Difference in Trees'
                 }
             },
-            series: seriesData,
+
+    plotOptions: {
+        series: {
+            stacking: 'normal'
+        }
+    },
+
+    // tooltip: {
+    //     formatter: function () {
+    //         return '<b>CO2e' + this.point.category + '</b><br/>' +
+    //             'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
+    //     }
+    // },
+
+    series: seriesData
+});
 
 
-            zones: [{
-                value: -10,
-                color: `#CE3815`
-            }, {
-                value: 0,
-                color: `#99D47F`
-            }]
-
-        });
     });
 };
 module.exports = ResultAlternativeView;
