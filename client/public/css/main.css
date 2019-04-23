@@ -1,6 +1,6 @@
 body {
   scroll-behavior: smooth;
-  background-color: #f2f0eb10;
+  background-color: #f2f0eb30;
   font-family: "Open Sans Condensed", sans-serif;
   margin: 0px;
 }
@@ -34,7 +34,8 @@ body {
 .select-7,
 .select-8,
 .select-9 {
-  background-color: #00000090;
+  background-color: #00000070;
+  border: 1px solid black;
   margin: 2%;
   width: 50%;
   padding: 4%;
@@ -113,7 +114,7 @@ label {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2em;
+  margin-top: 1em;
   height: 5em;
 }
 
@@ -139,6 +140,15 @@ label {
 .vertical-line {
   margin-top: 10%;
   border: none;
+}
+
+#vertical-line-footer-1 {
+  margin-left: 95%;
+  margin-top: 0;
+}
+#vertical-line-footer-2 {
+  margin-right: 95%;
+  margin-top: 0;
 }
 
 hr {

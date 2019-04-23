@@ -1,6 +1,6 @@
 const FormView = require("./views/form_view.js");
 const ResultTotalView = require("./views/result_total_view.js");
-const CarbonCounter = require("./models/CarbonCounter.js"); //CHECK IF CORRECT
+const CarbonCounter = require("./models/CarbonCounter.js");
 
 document.addEventListener("DOMContentLoaded", () => {
   const formElement = document.querySelector("form#carbon-form");
