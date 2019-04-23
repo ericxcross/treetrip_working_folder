@@ -1,70 +1,173 @@
+@import "https://code.highcharts.com/css/highcharts.css";
 body {
   scroll-behavior: smooth;
-  /* background-color: #f2f0eb10; */
+  background-color: #f2f0eb30;
   font-family: "Open Sans Condensed", sans-serif;
+  margin: 0px;
 }
 
 .logo {
-  padding-bottom: 5em;
-  border-bottom: solid black;
+  padding-bottom: 4em;
+  box-sizing: border-box;
 }
 
 #carbon-trip-logo {
-  display: flex;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  height: 4em;
 }
 
 #carbon-form {
   text-align: center;
-  min-height: 666px;
-  display: block;
+  margin-top: 10%;
+  position: relative;
+  width: 100%;
 }
 
 .select-1,
 .select-2,
 .select-3,
-.select-4 {
-  background-color: black;
-  margin: 20%;
-  margin-top: 10%;
-  padding-top: 10%;
+.select-4,
+.select-5,
+.select-6,
+.select-7,
+.select-8,
+.select-9 {
+  background-color: #00000070;
+  border: 1px solid black;
+  margin: 2%;
+  width: 50%;
+  padding: 4%;
+  color: white;
   text-align: center;
-  color: #5f8c4a;
+  box-sizing: content-box;
+  margin-left: auto;
+  margin-right: auto;
+  font: 30px "Josefin Sans", sans-serif;
+}
+
+input[type="submit"],
+input[type="number"] {
+  padding: 15px;
+  border-radius: 3px;
+  font-family: "M PLUS Rounded 1c";
+  margin: 5%;
+  color: #a8d991;
+  background-color: #00000090;
+  font-size: 25px;
 }
 
 label {
-  font-family: "M PLUS Rounded 1c", sans-serif;
-  text-align: center;
+  font-family: "M PLUS Rounded 1c";
+  font-size: 36px;
+  margin: 20%;
+  background: linear-gradient(to right, #a8d991, #d94d1a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  font-weight: 700;
 }
 
 #result-total {
-  margin-top: 3em;
+  margin: 3em;
   display: flex;
   justify-content: space-evenly;
-  text-align: center;
-  width: 100%;
-  box-sizing: content-box;
+}
+
+.hexagon {
+  width: 220px;
+  height: 192px;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 #co2-result {
-  box-sizing: content-box;
+  background: url(../images/resultview-co2e.png);
   color: white;
-  background-color: #d94d1a;
   font-family: "M PLUS Rounded 1c", sans-serif;
-  width: 250px;
+  text-align: center;
+  background-size: cover;
 }
 
 #tree-result {
-  box-sizing: content-box;
+  background: url(../images/resultview-trees.png);
   color: white;
   font-family: "M PLUS Rounded 1c", sans-serif;
-  background-color: #325947;
-  width: 250px;
+  text-align: center;
+  background-size: cover;
 }
 
 #sc-result {
-  box-sizing: content-box;
+  background: url(../images/resultview-sc.png);
   color: white;
-  background-color: #f2ab27;
   font-family: "M PLUS Rounded 1c", sans-serif;
-  width: 250px;
+  text-align: center;
+  background-size: cover;
+}
+
+.footer-div {
+  box-sizing: border-box;
+  padding-bottom: 4em;
+}
+.footer-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  height: 5em;
+}
+
+.dividers {
+  display: flex;
+  align-items: center;
+}
+
+.dividers > div {
+  flex: 1;
+}
+
+.divider-left {
+  padding: 0 3em;
+  text-align: left;
+}
+
+.divider-right {
+  padding: 0 3em;
+  text-align: right;
+}
+
+.vertical-line {
+  margin-top: 10%;
+  border: none;
+}
+
+#vertical-line-footer-1 {
+  margin-left: 95%;
+  margin-top: 0;
+}
+#vertical-line-footer-2 {
+  margin-right: 95%;
+  margin-top: 0;
+}
+
+hr {
+  background-color: black;
+  border-color: black;
+}
+.highcharts-color-0 {
+  fill: #99d47f;
+  stroke: #ce3815;
+}
+#alternatives {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  margin-bottom: 5em;
+}
+.highcharts-background {
+  fill: #f2f0eb30;
 }

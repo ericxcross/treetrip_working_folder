@@ -1,8 +1,8 @@
 const PubSub = require("../helpers/pub_sub.js");
 const RequestHelper = require("../helpers/request_helper.js");
 
-const ResultAlternativeView = function (container) {
-    this.container = container;
+const ResultAlternativeView = function(container) {
+  this.container = container;
 };
 
 ResultAlternativeView.prototype.bindEvents = function () {
@@ -105,5 +105,7 @@ Highcharts.chart('alternatives', {
 
 
     });
+  });
 };
+
 module.exports = ResultAlternativeView;
