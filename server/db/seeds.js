@@ -58,7 +58,7 @@ db.transportmodes.insertOne({
   }, {
     name: "Land",
     image: "images/icon_land.png",
-    typename: "transport-type",
+    typename: "Transport_Type",
     type: [{
         name: "Car",
         image: "images/icon_car.png",
@@ -66,21 +66,25 @@ db.transportmodes.insertOne({
         type: [{
             name: "Up_to_1.3L_engine",
             image: "images/icon_small_engine.png",
-            typename: "Fuel-type",
+            typename: "Fuel_Type",
             type: [{
                 name: "Diesel",
+                image: "images/icon_fuel.png",
                 co2e: 0.14533
               },
               {
                 name: "Petrol",
+                image: "images/icon_fuel.png",
                 co2e: 0.15565
               },
               {
                 name: "Hybrid",
+                image: "images/icon_fuel.png",
                 co2e: 0.10957
               },
               {
-                name: "Plug-In_Hybrid_Electric_Vehicle",
+                name: "Plug-In_Hybrid",
+                image: "images/icon_fuel.png",
                 co2e: 0.02255
               },
               {
@@ -93,33 +97,39 @@ db.transportmodes.insertOne({
           {
             name: "Up_to_1.8L_engine",
             image: "images/icon_engine.png",
-            typename: "Fuel-type",
+            typename: "Fuel_Type",
             type: [{
                 name: "Diesel",
+                image: "images/icon_fuel.png",
                 co2e: 0.17353
               },
               {
                 name: "Petrol",
+                image: "images/icon_fuel.png",
                 co2e: 0.19386
               },
               {
                 name: "Hybrid",
+                image: "images/icon_fuel.png",
                 co2e: 0.11538
               },
               {
                 name: "CNG",
+                image: "images/icon_fuel.png",
                 co2e: 0.16324
               },
               {
                 name: "LPG",
+                image: "images/icon_fuel.png",
                 co2e: 0.18217
               },
               {
-                name: "Plug-In_Hybrid_Electric_Vehicles",
+                name: "Plug-In_Hybrid",
+                image: "images/icon_fuel.png",
                 co2e: 0.0712
               },
               {
-                name: "Electric Vehicle",
+                name: "Electric_Vehicle",
                 image: "images/icon_electric.png",
                 co2e: 0.0
               }
@@ -128,7 +138,7 @@ db.transportmodes.insertOne({
           {
             name: "Over_1.8L_engine",
             image: "images/icon_large_engine.png",
-            typename: "Fuel-type",
+            typename: "Fuel_Type",
             type: [{
                 name: "Diesel",
                 image: "images/icon_fuel.png",
@@ -155,7 +165,7 @@ db.transportmodes.insertOne({
                 co2e: 0.26704
               },
               {
-                name: "Plug-In_Hybrid_Electric_Vehicle",
+                name: "Plug-In_Hybrid",
                 image: "images/icon_fuel.png",
                 co2e: 0.07717
               },
@@ -171,7 +181,7 @@ db.transportmodes.insertOne({
       {
         name: "Motorcycle",
         image: "images/icon_motorcycle.png",
-        typename: "size",
+        typename: "Size",
         type: [{
             name: "Up_to_125CC_engine",
             image: "images/icon_small_engine.png",
@@ -246,23 +256,16 @@ db.transportmodes.insertOne({
   }]
 });
 
-// plane
-// ferry
-// train
-// Bus
-// Electric vehicle
-// Cycle
-// Walk
 db.alternativeTransportModes.insertOne({
   alternatives: [{
-    name: "Plane - Economy Class",
+    name: "Plane",
     co2e: 0.1597,
     mindistance: 200,
     maxdistance: 999999
   },
   {
     name: "Ferry",
-    co2e: 0.112873,
+    co2e: 0.129529,
     mindistance: 0,
     maxdistance: 999999
   },
@@ -285,6 +288,18 @@ db.alternativeTransportModes.insertOne({
     maxdistance: 999999
   },
   {
+    name: "Car (average)",
+    co2e: 0.17753,
+    mindistance: 0,
+    maxdistance: 1000
+  },
+  {
+    name: "Motorbike (average)",
+    co2e: 0.11529,
+    mindistance: 0,
+    maxdistance: 1000
+  },
+  {
     name: "Electric Car",
     co2e: 0,
     mindistance: 0,
@@ -302,38 +317,4 @@ db.alternativeTransportModes.insertOne({
     mindistance: 0,
     maxdistance: 50
   }]}
-) 
-// {
-//   name: "average",
-//   typename: "fuel type",
-//   type: [
-//     {
-//       name: "Diesel",
-//       co2e: 0.17753
-//     },
-//     {
-//       name: "Petrol",
-//       co2e: 0.18368
-//     },
-//     {
-//       name: "Hybrid",
-//       co2e: 0.12568
-//     },
-//     {
-//       name: "CNG",
-//       co2e: 0.17925
-//     },
-//     {
-//       name: "LPG",
-//       co2e: 0.20022
-//     },
-//     {
-//       name: "Plug-In Hybrid Electric Vehicles",
-//       co2e: 0.07096
-//     },
-//     {
-//       name: "Electric Vehicle",
-//       co2e: 0.0
-//     }
-//   ]
-// }
+)
