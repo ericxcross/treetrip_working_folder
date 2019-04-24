@@ -2,7 +2,7 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #f9f9f9;
+  background-color: #fafaef;
   border: 10px #c8ebb4;
 }
 
@@ -11,10 +11,22 @@ body {
   font-size: 0.8em;
   padding: 0;
   margin: 0;
-  background-image: linear-gradient(#c8ebb4, #c8ebb4);
-  background-size: 5px 100%;
+  background-image: linear-gradient(#fafaef, #c8ebb4);
+  background-size: 10px 100%;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.landing {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/background_landing.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
 }
 
 header {
@@ -36,7 +48,6 @@ header {
 }
 
 footer {
-  background-color: #f9f9f9;
   width: 100vw;
   height: auto;
   margin: 1;
@@ -76,7 +87,7 @@ h2,
   min-height: 20vh;
   margin-top: 40vh;
   margin-bottom: 40vh;
-  background-color: #c8ebb4;
+  background-color: #fafaef;
   text-align: center;
   width: 27em;
   padding: 1em;
@@ -190,10 +201,8 @@ input[type="submit"]::-webkit-inner-spin-button {
 }
 
 #result-total {
-  z-index: 1;
   justify-content: space-evenly;
   display: flex;
-  background-color: #f9f9f9;
 }
 
 .hexagon {
@@ -207,10 +216,10 @@ input[type="submit"]::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-size: contain !important;
+  background-size: 170px auto;
   background-repeat: no-repeat !important;
   background-position: center !important;
-  border-radius: 20px !important;
+  border-radius: 1px !important;
 }
 
 .hexagon p {
@@ -224,19 +233,16 @@ input[type="submit"]::-webkit-inner-spin-button {
 #co2-result {
   background: url(../images/resultview-co2e.png);
   background-color: #730202;
-  width: 250px;
 }
 
 #tree-result {
   background: url(../images/resultview-trees.png);
   background-color: #325947;
-  width: 250px;
 }
 
 #sc-result {
   background: url(../images/resultview-sc.png);
   background-color: #f2ab27;
-  width: 250px;
 }
 
 #alternatives {
@@ -245,8 +251,8 @@ input[type="submit"]::-webkit-inner-spin-button {
   margin-right: auto;
   margin-top: 1em;
   margin-bottom: 10em;
-  background-color: #f9f9f9;
-  z-index: 1;
+  /* background-color: #f9f9f9; */
+  /* z-index: 1; */
 }
 
 .highcharts-color-1 .highcharts-point {
