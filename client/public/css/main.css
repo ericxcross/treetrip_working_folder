@@ -126,7 +126,6 @@ h3 {
   justify-content: space-around;
   padding: 2em;
   padding-top: 0.5em;
-  box-shadow: 5px 5px darkgrey;
 }
 
 .selectcontainer h2 {
@@ -184,7 +183,6 @@ input:checked + label {
   justify-content: space-around;
   padding: 2em;
   padding-top: 0.5em;
-  box-shadow: 5px 5px darkgrey;
 }
 
 input[type="number"] {
@@ -214,7 +212,7 @@ input[type="submit"]::-webkit-inner-spin-button {
 }
 
 #result-total {
-  justify-content: space-around;
+  justify-content: space-between;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -228,7 +226,10 @@ input[type="submit"]::-webkit-inner-spin-button {
   padding: 2em;
   color: white;
   max-width: 20em;
-  margin: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .hexagon h3 {
@@ -302,14 +303,12 @@ a:hover {
 #bottom-form-button {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+  margin-bottom: 15em;
   background-color: #c8ebb4;
   text-align: center;
   width: 27em;
   padding: 1em;
   transition: 0.3s;
-  box-shadow: 5px 5px darkgrey;
 }
 
 .highcharts-root {
