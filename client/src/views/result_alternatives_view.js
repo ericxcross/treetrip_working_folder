@@ -72,8 +72,8 @@ ResultAlternativeView.prototype.bindEvents = function() {
         title: {
           text: "Difference in Trees"
         },
-        softMax: maxNumberOfTrees,
-        softMin: -maxNumberOfTrees
+        max: maxNumberOfTrees,
+        min: -maxNumberOfTrees
       },
 
       plotOptions: {
