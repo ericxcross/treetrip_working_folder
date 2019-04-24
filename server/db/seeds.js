@@ -255,14 +255,14 @@ db.transportmodes.insertOne({
 // Walk
 db.alternativeTransportModes.insertOne({
   alternatives: [{
-    name: "Plane - Economy Class",
+    name: "Plane",
     co2e: 0.1597,
     mindistance: 200,
     maxdistance: 999999
   },
   {
     name: "Ferry",
-    co2e: 0.112873,
+    co2e: 0.129529,
     mindistance: 0,
     maxdistance: 999999
   },
@@ -285,6 +285,18 @@ db.alternativeTransportModes.insertOne({
     maxdistance: 999999
   },
   {
+    name: "Car (average)",
+    co2e: 0.17753,
+    mindistance: 0,
+    maxdistance: 1000
+  },
+  {
+    name: "Motorbike (average)",
+    co2e: 0.11529,
+    mindistance: 0,
+    maxdistance: 1000
+  },
+  {
     name: "Electric Car",
     co2e: 0,
     mindistance: 0,
@@ -303,37 +315,4 @@ db.alternativeTransportModes.insertOne({
     maxdistance: 50
   }]}
 ) 
-// {
-//   name: "average",
-//   typename: "fuel type",
-//   type: [
-//     {
-//       name: "Diesel",
-//       co2e: 0.17753
-//     },
-//     {
-//       name: "Petrol",
-//       co2e: 0.18368
-//     },
-//     {
-//       name: "Hybrid",
-//       co2e: 0.12568
-//     },
-//     {
-//       name: "CNG",
-//       co2e: 0.17925
-//     },
-//     {
-//       name: "LPG",
-//       co2e: 0.20022
-//     },
-//     {
-//       name: "Plug-In Hybrid Electric Vehicles",
-//       co2e: 0.07096
-//     },
-//     {
-//       name: "Electric Vehicle",
-//       co2e: 0.0
-//     }
-//   ]
-// }
+
