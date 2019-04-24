@@ -122,9 +122,9 @@ CarbonCounter.prototype.calculateTrees = function (carbonTotal) {
 };
 
 CarbonCounter.prototype.calculateSocialCost = function (carbonTotal) {
-    // 2050 values $0.50 / ton CO2 >> $0.0005 / kg CO2 
+    // 2050 values $0.50 / ton CO2 >> $0.0005 / kg CO2
     const socialCost = 0.0005 * carbonTotal;
-    return Math.round(socialCost * 1000) / 1000;
+    return Math.round(socialCost * 100) / 100;
 };
 
 
