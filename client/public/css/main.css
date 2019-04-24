@@ -65,8 +65,12 @@ footer {
   margin-right: auto;
   margin-top: -1em;
   margin-bottom: 0.5em;
-  background-color: ;
+  transition: 0.3s;
   padding: 1em;
+}
+
+#footer-logo:hover{
+  -webkit-filter: brightness(80%);
 }
 
 #carbon-form {
@@ -99,6 +103,7 @@ h3 {
   width: 27em;
   padding: 1em;
   transition: 0.3s;
+  box-shadow: 5px 5px darkgrey;
 }
 
 .button:hover {
@@ -122,6 +127,7 @@ h3 {
   justify-content: space-around;
   padding: 2em;
   padding-top: 0.5em;
+  box-shadow: 5px 5px darkgrey;
 }
 
 .selectcontainer h2 {
@@ -179,6 +185,7 @@ input:checked + label {
   justify-content: space-around;
   padding: 2em;
   padding-top: 0.5em;
+  box-shadow: 5px 5px darkgrey;
 }
 
 input[type="number"] {
@@ -213,13 +220,16 @@ input[type="submit"]::-webkit-inner-spin-button {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: stretch;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hexagon {
   padding: 2em;
   color: white;
   max-width: 20em;
-  margin: 3em;
+  margin: 1em;
 }
 
 .hexagon h3 {
@@ -289,4 +299,17 @@ a:hover {
 }
 .highcharts-background {
   fill: #f2f0eb30;
+}
+
+#bottom-form-button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  background-color: #c8ebb4;
+  text-align: center;
+  width: 27em;
+  padding: 1em;
+  transition: 0.3s;
+  box-shadow: 5px 5px darkgrey;
 }

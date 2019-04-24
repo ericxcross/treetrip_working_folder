@@ -80,7 +80,7 @@ db.transportmodes.insertOne({
                 co2e: 0.10957
               },
               {
-                name: "Plug-In_Hybrid_Electric_Vehicle",
+                name: "Plug-In_Hybrid",
                 co2e: 0.02255
               },
               {
@@ -115,11 +115,11 @@ db.transportmodes.insertOne({
                 co2e: 0.18217
               },
               {
-                name: "Plug-In_Hybrid_Electric_Vehicles",
+                name: "Plug-In_Hybrid",
                 co2e: 0.0712
               },
               {
-                name: "Electric Vehicle",
+                name: "Electric_Vehicle",
                 image: "images/icon_electric.png",
                 co2e: 0.0
               }
@@ -155,7 +155,7 @@ db.transportmodes.insertOne({
                 co2e: 0.26704
               },
               {
-                name: "Plug-In_Hybrid_Electric_Vehicle",
+                name: "Plug-In_Hybrid",
                 image: "images/icon_fuel.png",
                 co2e: 0.07717
               },
@@ -314,5 +314,4 @@ db.alternativeTransportModes.insertOne({
     mindistance: 0,
     maxdistance: 50
   }]}
-) 
-
+)

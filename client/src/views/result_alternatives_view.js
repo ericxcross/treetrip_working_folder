@@ -22,10 +22,10 @@ ResultAlternativeView.prototype.bindEvents = function() {
         treesChangeLess.push(type.treesChange);
       }
     });
-    let treesChangeLessPositive = treesChangeLess.map(value => -value);    
+    let treesChangeLessPositive = treesChangeLess.map(value => -value);
     let allTreesChangeItems = treesChangeAdditional.concat(treesChangeLessPositive);
     let maxNumberOfTrees = Math.max( ...allTreesChangeItems );
-    
+
 
 
     const seriesData = [
@@ -81,7 +81,7 @@ ResultAlternativeView.prototype.bindEvents = function() {
           stacking: "normal"
         }
       },
-      
+
 
       tooltip: {
           formatter: function () {
@@ -92,6 +92,9 @@ ResultAlternativeView.prototype.bindEvents = function() {
 
       series: seriesData
     });
+  });
+  PubSub.subscribe("ClearElement", evt=>{
+    this.container.innerHTML = '';
   });
 };
 

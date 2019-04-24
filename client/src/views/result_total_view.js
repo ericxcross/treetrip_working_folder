@@ -16,6 +16,10 @@ ResultTotalView.prototype.bindEvents = function() {
     );
     this.renderHexagon("sc-result", `£ ${evt.detail.sc}`, content_text.sc);
   });
+
+  PubSub.subscribe("ClearElement", evt=>{
+    this.element.innerHTML = '';
+  });
 };
 
 ResultTotalView.prototype.renderHexagon = function(divId, text, object) {

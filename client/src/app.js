@@ -1,4 +1,5 @@
-const ButtonView = require("./views/button_view.js")
+const ButtonView = require("./views/button_view.js");
+const RedoButtonView = require("./views/redo_button_view.js")
 const FormView = require("./views/form_view.js");
 const ResultTotalView = require("./views/result_total_view.js");
 const CarbonCounter = require("./models/carboncounter.js");
@@ -10,6 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttonElement = document.querySelector("#form-button");
   const buttonView = new ButtonView(buttonElement);
   buttonView.bindEvents();
+
+  const redoButtonElement = document.querySelector("#redo-form-button");
+  const redoButtonView = new RedoButtonView(redoButtonElement);
+  redoButtonView.bindEvents();
 
   const resultAltElement = document.querySelector("div#alternatives");
   const resultAltView = new ResultAltView(resultAltElement);

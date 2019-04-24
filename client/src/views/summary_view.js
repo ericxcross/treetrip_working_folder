@@ -8,10 +8,10 @@ SummaryView.prototype.bindEvents = function () {
   PubSub.subscribe('FormView:TripDetails', evt => {
     console.dir(evt.detail);
   });
-};
 
-SummaryView.prototype.bindEvents = function () {
-  
+  PubSub.subscribe("ClearElement", evt=>{
+    this.element.innerHTML = '';
+  });
 };
 
 module.exports = SummaryView;
