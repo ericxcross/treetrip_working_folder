@@ -269,7 +269,7 @@ a:hover {
   margin-right: auto;
   margin-top: 1em;
   margin-bottom: 10em;
-  width: 80vw;
+  width: 95vw;
   z-index: 1;
 }
 
@@ -288,6 +288,13 @@ a:hover {
 }
 .highcharts-background {
   fill: #f2f0eb30;
+}
+
+.highcharts-root {
+  border: 3px solid #c8ebb4;
+  font-family: "Open Sans", sans-serif;
+  border-bottom: 3px;
+  border-right: 3px;
 }
 
 #references {
