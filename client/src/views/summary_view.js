@@ -9,14 +9,14 @@ SummaryView.prototype.bindEvents = function () {
   PubSub.subscribe('FormView:TripDetails', evt => {
     this.element.innerHTML = ``;
     console.dir(evt.detail);
-    const obj = evt.detail;
+    const obj = {...evt.detail};
     const distance = evt.detail.distance;
     delete obj.co2e;
     delete obj.distance;
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
         const val = textParse(obj[key]);
-        const keyParsed = textParse(key)
+        const keyParsed = textParse(key);
         if (key === 'Terrain') {
           this.renderHeader(val);
         } else {
@@ -25,7 +25,12 @@ SummaryView.prototype.bindEvents = function () {
       }
     }
     this.renderDistance(distance);
+    this.element.scrollIntoView({
+      behavior: 'auto',
+      block: 'center',
+      inline: 'center'});
   });
+
 };
 
 SummaryView.prototype.renderHeader = function (val) {
@@ -50,13 +55,13 @@ SummaryView.prototype.renderDistance = function (val) {
   const containerDiv = document.createElement("div");
   containerDiv.classList.add("distance-category");
   containerDiv.innerHTML = `
-  <h3>Distance: ${val}</h3>
+  <h3>Distance: ${val} km</h3>
   `;
   this.element.appendChild(containerDiv);
 };
 
 const textParse = function(text){
-  return text.split("_").join(" ")
+  return (typeof text === 'string' || text instanceof String) ? text.split("_").join(" ") : text.toString()
 }
 
 module.exports = SummaryView;
