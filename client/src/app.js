@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   resultTotalView.bindEvents();
 
   const summaryElement = document.querySelector("div#summary-view");
-  const summaryView = new SummaryView(resultTotalElement);
+  const summaryView = new SummaryView(summaryElement);
   summaryView.bindEvents();
 
   const carbonCounter = new CarbonCounter();
