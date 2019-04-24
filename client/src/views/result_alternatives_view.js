@@ -7,6 +7,11 @@ const ResultAlternativeView = function(container) {
 ResultAlternativeView.prototype.bindEvents = function() {
   PubSub.subscribe("CarbonCounter:AlternativeTravelOptions", evt => {
     this.container.innerHTML = "";
+
+    const subDiv = document.createElement('div');
+    subDiv.id = 'subdiv-alternatives';
+    this.container.appendChild(subDiv);
+
     // separate incoming data
     const alternativesData = evt.detail;
     let transportTypes = [];
@@ -26,8 +31,6 @@ ResultAlternativeView.prototype.bindEvents = function() {
     let allTreesChangeItems = treesChangeAdditional.concat(treesChangeLessPositive);
     let maxNumberOfTrees = Math.max( ...allTreesChangeItems );
 
-
-
     const seriesData = [
       {
         name: "Less trees required",
@@ -39,15 +42,15 @@ ResultAlternativeView.prototype.bindEvents = function() {
       }
     ];
 
-    Highcharts.chart("alternatives", {
+    Highcharts.chart("subdiv-alternatives", {
       chart: {
         type: "bar"
       },
       title: {
-        text: "Is it possible to require less trees?"
+        text: "Alternate Transport Options"
       },
       subtitle: {
-        text: "Difference in trees required to absorb the trip CO2 in 1 day"
+        text: "How many trees could you save by using green transport methods?"
       },
       xAxis: [
         {
@@ -70,29 +73,26 @@ ResultAlternativeView.prototype.bindEvents = function() {
       ],
       yAxis: {
         title: {
-          text: "Difference in Trees"
+          text: "Tree Difference"
         },
         max: maxNumberOfTrees,
         min: -maxNumberOfTrees
       },
-
       plotOptions: {
         series: {
           stacking: "normal"
         }
       },
-
-
       tooltip: {
           formatter: function () {
               return '<b>' + this.point.category + '</b><br/>' +
                   'Tree Difference: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
           }
       },
-
       series: seriesData
     });
   });
+
   PubSub.subscribe("ClearElement", evt=>{
     this.container.innerHTML = '';
   });

@@ -13,6 +13,7 @@ FormView.prototype.bindEvents = function() {
 
 FormView.prototype.render = function(formData) {
   this.form.innerHTML = "";
+  this.currentItems = {};
 
   let idNum = 0;
 

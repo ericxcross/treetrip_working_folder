@@ -11,8 +11,10 @@ RedoButtonView.prototype.bindEvents = function () {
     this.button.addEventListener("click", evt => {
       PubSub.publish("FormView:RequestData");
       PubSub.publish("ClearElement");
-      this.button.innerHTML = ''
     });
+  });
+  PubSub.subscribe("ClearElement", (evt)=>{
+    this.button.innerHTML = ''
   });
 };
 
