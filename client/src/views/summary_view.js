@@ -29,10 +29,7 @@ SummaryView.prototype.bindEvents = function () {
       }
     }
     this.renderDistance(distance);
-    this.element.scrollIntoView({
-      behavior: 'auto',
-      block: 'center',
-      inline: 'center'});
+    this.element.scrollIntoView();
   });
 
   PubSub.subscribe("ClearElement", evt=>{
