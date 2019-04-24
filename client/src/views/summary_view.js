@@ -2,6 +2,7 @@ const PubSub = require("../helpers/pub_sub.js");
 
 const SummaryView = function (element) {
   this.element = element;
+  this.innerElement = null;
   this.secondaryElement = null;
 };
 
@@ -13,6 +14,9 @@ SummaryView.prototype.bindEvents = function () {
     const distance = evt.detail.distance;
     delete obj.co2e;
     delete obj.distance;
+    this.innerElement = document.createElement("div");
+    this.innerElement.id = "inner-element-summary";
+    this.element.appendChild(this.innerElement);
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
         const val = textParse(obj[key]);
@@ -42,25 +46,23 @@ SummaryView.prototype.renderHeader = function (val) {
   this.secondaryElement.innerHTML = `
   <h2>${val} Transport</h2>
   `;
-  this.element.appendChild(this.secondaryElement);
+  this.innerElement.appendChild(this.secondaryElement);
 };
 
 SummaryView.prototype.renderItem = function (key, val) {
-  const containerDiv = document.createElement("div");
-  containerDiv.classList.add("sub-category");
-  containerDiv.innerHTML = `
-  <h3>${key}: ${val}</h3>
-  `;
-  this.secondaryElement.appendChild(containerDiv);
+  const textcontainer = document.createElement("h3");
+  textcontainer.classList.add("sub-category");
+  textcontainer.textContent = `${key}: ${val}`;
+  this.secondaryElement.appendChild(textcontainer);
 };
 
 SummaryView.prototype.renderDistance = function (val) {
   const containerDiv = document.createElement("div");
   containerDiv.classList.add("distance-category");
   containerDiv.innerHTML = `
-  <h3>Distance: ${val} km</h3>
+  <h1>${val}km</h1>
   `;
-  this.element.appendChild(containerDiv);
+  this.innerElement.appendChild(containerDiv);
 };
 
 const textParse = function(text){

@@ -328,3 +328,40 @@ a:hover {
 footer p {
   padding-bottom: 2em;
 }
+
+#summary-view {
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30vh;
+  margin-bottom: 30vh;
+  background-color: #c8ebb4;
+  /* padding: 2em; */
+}
+
+#inner-element-summary {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2em;
+}
+
+h1 {
+  font-family: "Dosis", sans-serif;
+  font-size: 6em;
+  text-transform: uppercase;
+  margin:0;
+}
+
+#inner-element-summary h2 {
+  margin:0;
+  padding: 0;
+}
+
+#views {
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #c8ebb4;
+}
