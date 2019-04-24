@@ -102,30 +102,31 @@ CarbonCounter.prototype.getData = function () {
 };
 
 CarbonCounter.prototype.viableAlternativeArray = function (distance) {
-        const viableAlternatives = [];
-        this.alternatives.forEach((element) => {
-                if (distance >= element.mindistance && distance <= element.maxdistance) {
-                    viableAlternatives.push(element);
-                }
-            })
-            return viableAlternatives;
+    const viableAlternatives = [];
+    this.alternatives.forEach((element) => {
+        if (distance >= element.mindistance && distance <= element.maxdistance) {
+            viableAlternatives.push(element);
         }
+    })
+    return viableAlternatives;
+}
 
-        CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers = 1) {
-            const carbonTotal = co2e * distance / passengers; //kg co2e
-            return Math.round(carbonTotal * 100) / 100;
-        };
+CarbonCounter.prototype.calculateCO2e = function (co2e, distance, passengers = 1) {
+    const carbonTotal = co2e * distance / passengers; //kg co2e
+    return Math.round(carbonTotal * 100) / 100;
+};
 
-        CarbonCounter.prototype.calculateTrees = function (carbonTotal) {
-            // assumes one tree absorbs 22kg CO2 / year
-            const trees = carbonTotal / (22 / 365); //number of trees in one day to absorb the trip CO2
-            return Math.round(trees);
-        };
+CarbonCounter.prototype.calculateTrees = function (carbonTotal) {
+    // assumes one tree absorbs 22kg CO2 / year
+    const trees = carbonTotal / (22 / 365); //number of trees in one day to absorb the trip CO2
+    return Math.round(trees);
+};
 
-        CarbonCounter.prototype.calculateSocialCost = function (carbonTotal) {
-            const socialCost = 0.025 * carbonTotal;
-            return Math.round(socialCost * 100) / 100;
-        };
+CarbonCounter.prototype.calculateSocialCost = function (carbonTotal) {
+    // 2050 values $0.50 / ton CO2 >> $0.0005 / kg CO2 
+    const socialCost = 0.0005 * carbonTotal;
+    return Math.round(socialCost * 1000) / 1000;
+};
 
 
-        module.exports = CarbonCounter;
+module.exports = CarbonCounter;

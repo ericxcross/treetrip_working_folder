@@ -22,14 +22,9 @@ ResultAlternativeView.prototype.bindEvents = function() {
         treesChangeLess.push(type.treesChange);
       }
     });
-    let treesChangeLessPositive = treesChangeLess.map(value => -value);
-    console.log(treesChangeLessPositive);
-    
+    let treesChangeLessPositive = treesChangeLess.map(value => -value);    
     let allTreesChangeItems = treesChangeAdditional.concat(treesChangeLessPositive);
-    console.log(allTreesChangeItems);
-    
     let maxNumberOfTrees = Math.max( ...allTreesChangeItems );
-    console.log(maxNumberOfTrees);
     
 
 
@@ -49,10 +44,10 @@ ResultAlternativeView.prototype.bindEvents = function() {
         type: "bar"
       },
       title: {
-        text: "Transport Alternatives"
+        text: "Is it possible to require less trees?"
       },
       subtitle: {
-        text: "Showing the difference in trees required to absorb the trip CO2 in 1 day"
+        text: "Difference in trees required to absorb the trip CO2 in 1 day"
       },
       xAxis: [
         {
