@@ -69,18 +69,22 @@ db.transportmodes.insertOne({
             typename: "Fuel_Type",
             type: [{
                 name: "Diesel",
+                image: "images/icon_fuel.png",
                 co2e: 0.14533
               },
               {
                 name: "Petrol",
+                image: "images/icon_fuel.png",
                 co2e: 0.15565
               },
               {
                 name: "Hybrid",
+                image: "images/icon_fuel.png",
                 co2e: 0.10957
               },
               {
                 name: "Plug-In_Hybrid",
+                image: "images/icon_fuel.png",
                 co2e: 0.02255
               },
               {
@@ -96,26 +100,32 @@ db.transportmodes.insertOne({
             typename: "Fuel_Type",
             type: [{
                 name: "Diesel",
+                image: "images/icon_fuel.png",
                 co2e: 0.17353
               },
               {
                 name: "Petrol",
+                image: "images/icon_fuel.png",
                 co2e: 0.19386
               },
               {
                 name: "Hybrid",
+                image: "images/icon_fuel.png",
                 co2e: 0.11538
               },
               {
                 name: "CNG",
+                image: "images/icon_fuel.png",
                 co2e: 0.16324
               },
               {
                 name: "LPG",
+                image: "images/icon_fuel.png",
                 co2e: 0.18217
               },
               {
                 name: "Plug-In_Hybrid",
+                image: "images/icon_fuel.png",
                 co2e: 0.0712
               },
               {
@@ -246,13 +256,6 @@ db.transportmodes.insertOne({
   }]
 });
 
-// plane
-// ferry
-// train
-// Bus
-// Electric vehicle
-// Cycle
-// Walk
 db.alternativeTransportModes.insertOne({
   alternatives: [{
     name: "Plane",
