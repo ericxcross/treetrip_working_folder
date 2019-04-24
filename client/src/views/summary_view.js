@@ -32,7 +32,7 @@ SummaryView.prototype.renderHeader = function (val) {
   this.secondaryElement = document.createElement("div");
   this.secondaryElement.classList.add("terrain");
   this.secondaryElement.innerHTML = `
-  <h2>Travelling over: ${val}</h2>
+  <h2>${val} Transport</h2>
   `;
   this.element.appendChild(this.secondaryElement);
 };
