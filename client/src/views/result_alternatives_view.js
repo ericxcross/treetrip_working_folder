@@ -1,5 +1,4 @@
 const PubSub = require("../helpers/pub_sub.js");
-const RequestHelper = require("../helpers/request_helper.js");
 
 const ResultAlternativeView = function(container) {
   this.container = container;
@@ -23,6 +22,16 @@ ResultAlternativeView.prototype.bindEvents = function() {
         treesChangeLess.push(type.treesChange);
       }
     });
+    let treesChangeLessPositive = treesChangeLess.map(value => -value);
+    console.log(treesChangeLessPositive);
+    
+    let allTreesChangeItems = treesChangeAdditional.concat(treesChangeLessPositive);
+    console.log(allTreesChangeItems);
+    
+    let maxNumberOfTrees = Math.max( ...allTreesChangeItems );
+    console.log(maxNumberOfTrees);
+    
+
 
     const seriesData = [
       {
@@ -34,27 +43,6 @@ ResultAlternativeView.prototype.bindEvents = function() {
         data: treesChangeAdditional
       }
     ];
-
-    // Highcharts.chart('alternatives', {
-    //     chart: {
-    //         type: 'bar'
-    //     },
-    //     title: {
-    //         text: 'Transport Alternatives'
-    //     },
-    //     xAxis: {
-    //         categories: transportTypes
-    //     },
-    //     yAxis: {
-    //         title: {
-    //             text: 'Difference in Trees'
-    //         }
-    //     },
-    //     series: seriesData
-
-    // });
-
-    // Data gathered from http://populationpyramid.net/germany/2015/
 
     Highcharts.chart("alternatives", {
       chart: {
@@ -88,7 +76,9 @@ ResultAlternativeView.prototype.bindEvents = function() {
       yAxis: {
         title: {
           text: "Difference in Trees"
-        }
+        },
+        softMax: maxNumberOfTrees,
+        softMin: -maxNumberOfTrees
       },
 
       plotOptions: {
@@ -96,6 +86,7 @@ ResultAlternativeView.prototype.bindEvents = function() {
           stacking: "normal"
         }
       },
+      
 
       tooltip: {
           formatter: function () {
