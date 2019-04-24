@@ -54,7 +54,7 @@ footer {
   height: 12em;
   text-align: center;
   font-weight: bold;
-  border-top: 1px solid black;
+  border-top: 1px solid #fafaef;
 }
 
 #footer-logo {
@@ -63,9 +63,10 @@ footer {
   max-width: 6em;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0em;
+  margin-top: -1em;
   margin-bottom: 0.5em;
-  padding-top: 20px;
+  background-color: ;
+  padding: 1em;
 }
 
 #carbon-form {
