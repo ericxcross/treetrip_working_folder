@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 const parser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
+const DataHelper = require("./helpers/dataHelper.js");
 const createRouter = require("./helpers/create_router.js");
 
 const publicPath = path.join(__dirname, "../client/public");
@@ -15,10 +16,11 @@ MongoClient.connect("mongodb://localhost:27017")
     const db = client.db("carbontrip");
     const collection = db.collection("transportmodes");
     const collectionAlt = db.collection("alternativeTransportModes");
-    const router = createRouter(collection);
-    const routerAlt = createRouter(collectionAlt);
+    const dataProvider = new DataHelper(collection);
+    const router = createRouter(dataProvider);
+    // const routerAlt = createRouter(collectionAlt);
     app.use("/api/transportmodes", router);
-    app.use("/api/alternativeTransportModes", routerAlt)
+    // app.use("/api/alternativeTransportModes", routerAlt);
   })
   .catch(console.err);
 
