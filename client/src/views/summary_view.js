@@ -7,6 +7,7 @@ const SummaryView = function (element) {
 
 SummaryView.prototype.bindEvents = function () {
   PubSub.subscribe('FormView:TripDetails', evt => {
+    this.element.innerHTML = ``;
     console.dir(evt.detail);
     const obj = evt.detail;
     const distance = evt.detail.distance;
@@ -14,13 +15,13 @@ SummaryView.prototype.bindEvents = function () {
     delete obj.distance;
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
-        const val = obj[key];
+        const val = textParse(obj[key]);
+        const keyParsed = textParse(key)
         if (key === 'Terrain') {
-          this.renderHeader(val)
+          this.renderHeader(val);
         } else {
-          this.renderItem(key, val);
+          this.renderItem(keyParsed, val);
         }
-
       }
     }
     this.renderDistance(distance);
@@ -38,15 +39,24 @@ SummaryView.prototype.renderHeader = function (val) {
 
 SummaryView.prototype.renderItem = function (key, val) {
   const containerDiv = document.createElement("div");
-  containerDiv.classList.add("terrain");
+  containerDiv.classList.add("sub-category");
   containerDiv.innerHTML = `
-  <h4>${key}: ${val}</h4>
+  <h3>${key}: ${val}</h3>
   `;
   this.secondaryElement.appendChild(containerDiv);
 };
 
 SummaryView.prototype.renderDistance = function (val) {
-
+  const containerDiv = document.createElement("div");
+  containerDiv.classList.add("distance-category");
+  containerDiv.innerHTML = `
+  <h3>Distance: ${val}</h3>
+  `;
+  this.element.appendChild(containerDiv);
 };
+
+const textParse = function(text){
+  return text.split("_").join(" ")
+}
 
 module.exports = SummaryView;
