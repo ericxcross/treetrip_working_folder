@@ -78,7 +78,6 @@ CarbonCounter.prototype.bindEvents = function () {
 
             }
         });
-        console.log(alternativeTransport);
         PubSub.publish('CarbonCounter:AlternativeTravelOptions', alternativeTransport);
 
     })

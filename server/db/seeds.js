@@ -58,7 +58,7 @@ db.transportmodes.insertOne({
   }, {
     name: "Land",
     image: "images/icon_land.png",
-    typename: "transport-type",
+    typename: "Transport_Type",
     type: [{
         name: "Car",
         image: "images/icon_car.png",
@@ -66,7 +66,7 @@ db.transportmodes.insertOne({
         type: [{
             name: "Up_to_1.3L_engine",
             image: "images/icon_small_engine.png",
-            typename: "Fuel-type",
+            typename: "Fuel_Type",
             type: [{
                 name: "Diesel",
                 co2e: 0.14533
@@ -93,7 +93,7 @@ db.transportmodes.insertOne({
           {
             name: "Up_to_1.8L_engine",
             image: "images/icon_engine.png",
-            typename: "Fuel-type",
+            typename: "Fuel_Type",
             type: [{
                 name: "Diesel",
                 co2e: 0.17353
@@ -128,7 +128,7 @@ db.transportmodes.insertOne({
           {
             name: "Over_1.8L_engine",
             image: "images/icon_large_engine.png",
-            typename: "Fuel-type",
+            typename: "Fuel_Type",
             type: [{
                 name: "Diesel",
                 image: "images/icon_fuel.png",
@@ -171,7 +171,7 @@ db.transportmodes.insertOne({
       {
         name: "Motorcycle",
         image: "images/icon_motorcycle.png",
-        typename: "size",
+        typename: "Size",
         type: [{
             name: "Up_to_125CC_engine",
             image: "images/icon_small_engine.png",
