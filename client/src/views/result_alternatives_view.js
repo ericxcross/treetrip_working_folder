@@ -50,7 +50,7 @@ ResultAlternativeView.prototype.bindEvents = function() {
         text: "Alternate Transport Options"
       },
       subtitle: {
-        text: "How many trees could you save by using green transport methods?"
+        text: "How many trees could you save by using alternative transport methods?"
       },
       xAxis: [
         {
