@@ -11,26 +11,24 @@ body {
   font-size: 0.8em;
   padding: 0;
   margin: 0;
-  background-image: linear-gradient(#c8ebb4, #c8ebb4);
+  background-image: linear-gradient(#fafaef, #c8ebb4);
   background-size: 10px 100%;
   background-repeat: no-repeat;
   background-position: center center;
 }
-
 
 header {
   position: absolute;
   top: 0px;
   width: 100vw;
   margin: 0;
-  background-color: #fafaef;
   z-index: 1;
 }
 
 #header-logo {
   display: block;
   height: auto;
-  max-width:22em;
+  max-width: 28em;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1em;
@@ -38,25 +36,59 @@ header {
 }
 
 footer {
-  background-color: #fafaef;
   width: 100vw;
   height: auto;
-  margin: 0;
-  z-index: 1;
-  height: 10em;
+  margin: 1;
+  height: 12em;
   text-align: center;
+  border-top: 10px solid #c8ebb4;
+  background-color: #fafaef;
 }
 
 #footer-logo {
   display: block;
   height: auto;
-  max-width:6em;
+  height: 8em;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0em;
-  margin-bottom: 0.5em;
+  margin-top: -4.25em;
+  margin-bottom: 1em;
+  transition: 0.3s;
 }
 
+#footer-logo:hover{
+  -webkit-filter: brightness(80%);
+}
+
+.landing {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 110vh;
+  background-image: url("../images/background_landing.png");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  border-bottom: 10px solid #c8ebb4;
+}
+#form-button {
+  margin-left: auto;
+  margin-right: auto;
+
+  min-height: 20vh;
+  margin-top: 40vh;
+  margin-bottom: 40vh;
+
+  background-color: #fafaef;
+  padding: 1em;
+
+  text-align: center;
+  width: 27em;
+
+  transition: 0.3s;
+  box-shadow: 5px 5px darkgrey;
+}
 
 #carbon-form {
   text-align: center;
@@ -64,35 +96,29 @@ footer {
   grid-template-columns: 1fr 80vw 1fr;
 }
 
-h2, #submitbutton{
+h2,
+#submitbutton {
   font-family: "Dosis", sans-serif;
   font-size: 2.6em;
   text-transform: uppercase;
 }
 
-#form-button{
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 20vh;
-  margin-top: 40vh;
-  margin-bottom: 40vh;
-  background-color: #c8ebb4;
-  text-align: center;
-  width: 27em;
-  padding: 1em;
-  transition: 0.3s;
+h3 {
+  font-family: "Dosis", sans-serif;
+  font-size: 1.4em;
+  text-transform: uppercase;
 }
 
-.button:hover{
+.button:hover {
   -webkit-filter: brightness(80%);
 }
 
 .selectcontainer {
-  grid-column: 2/ span 1;
+  grid-column: 2 / span 1;
 
   background-color: #c8ebb4;
-  margin-top: 30vh;
-  margin-bottom: 30vh;
+  margin-top: 40vh;
+  margin-bottom: 40vh;
   min-height: 40vh;
 
   border: none;
@@ -123,10 +149,10 @@ h2, #submitbutton{
   padding: 1em;
   margin: 0.5em;
   transition: 0.3s;
-  background-color: #A8D991;
+  background-color: #a8d991;
 }
 
-.radioimage{
+.radioimage {
   width: 4em;
   height: auto;
 }
@@ -140,17 +166,17 @@ h2, #submitbutton{
   -webkit-filter: brightness(80%);
 }
 
-input:checked + label{
+input:checked + label {
   background-color: #f2ab27;
   transition: 0.3s;
 }
 
 .distancecontainer {
-  grid-column: 2/ span 1;
+  grid-column: 2 / span 1;
 
   background-color: #c8ebb4;
-  margin-top: 30vh;
-  margin-bottom: 30vh;
+  margin-top: 40vh;
+  margin-bottom: 40vh;
   min-height: 40vh;
 
   border: none;
@@ -163,7 +189,7 @@ input:checked + label{
   padding-top: 0.5em;
 }
 
-input[type=number]{
+input[type="number"] {
   padding: 0.5em;
   text-align: center;
   height: 2em;
@@ -171,88 +197,206 @@ input[type=number]{
   color: black;
 }
 
-#submitbutton{
+#submitbutton {
   border: none;
   padding: 1em;
   text-align: center;
   font-size: 1.4em;
   color: black;
-  background-color: #A8D991;
+  background-color: #a8d991;
   transition: 0.3s;
 }
 
-input[type=number]::-webkit-inner-spin-button {
+input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-input[type=submit]::-webkit-inner-spin-button {
+input[type="submit"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
 #result-total {
-  margin-top: 3em;
-  display: grid;
+  justify-content: space-between;
+  display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hexagon {
-  grid-column:
-  width: 220px;
-  height: 192px;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  padding: 2em;
+  color: white;
+  max-width: 24em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.hexagon h3 {
+  text-align: center;
+  padding: 0;
+}
+
+.info-card {
+  width: 100%;
+  height: 12em;
+  padding-top: 2.3em;
+  text-align: center;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.info-card h2 {
+  font-size: 3.6em;
+}
+
+.hexagon a {
+  text-decoration: none;
+  font-weight: bold;
+  font-style: normal;
+  color: inherit;
+}
+
+a:hover {
+  opacity: 0.7;
 }
 
 #co2-result {
-  background: url(../images/resultview-co2e.png);
-  color: white;
-  background-color: #d94d1a;
-  font-family: "Dosis", sans-serif;
-  width: 250px;
+  background-color: #730202;
 }
 
 #tree-result {
-  background: url(../images/resultview-trees.png);
-  color: white;
-  font-family: "Dosis", sans-serif;
   background-color: #325947;
-  width: 250px;
 }
 
 #sc-result {
-  background: url(../images/resultview-sc.png);
-  color: white;
   background-color: #f2ab27;
+}
+
+#bottom-form-button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15em;
+  margin-top: 2em;
+  background-color: #c8ebb4;
+  text-align: center;
+  width: 27em;
+  padding: 1em;
+  transition: 0.3s;
+  box-shadow: 5px 5px darkgrey;
+}
+
+#references {
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 2.3em;
+  font-weight: bold;
+}
+
+footer p {
+  padding-bottom: 2em;
+}
+
+#summary-view {
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #c8ebb4;
+  /* padding: 2em; */
+}
+
+#inner-element-summary {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2em;
+  margin-top: 30vh;
+}
+
+h1 {
   font-family: "Dosis", sans-serif;
-  width: 250px;
+  font-size: 6em;
+  text-transform: uppercase;
+  margin:0;
 }
 
-
-
-
-/* CHARTS STYLING */
-.highcharts-color-1 .highcharts-point {
- fill: #434348;
- stroke: none;
+#inner-element-summary h2 {
+  margin:0;
+  padding: 0;
 }
 
-.highcharts-point {
- fill: #99d47f;
-}
-
-.highcharts-color-0 {
- fill: #99d47f;
- stroke: none;
+#views {
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #c8ebb4;
 }
 
 #alternatives {
- display: block;
- margin-left: auto;
- margin-right: auto;
- margin-top: 1em;
- margin-bottom: 5em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80vw;
+  background-color: #e5f2d4;
+}
+
+#subdiv-alternatives {
+  padding: 2em;
+}
+
+.highcharts-color-1 .highcharts-point {
+  fill: #434348;
+  stroke: none;
+}
+
+.highcharts-point {
+  fill: #325947;
+}
+
+.highcharts-color-0 {
+  fill: #325947;
+  stroke: none;
 }
 .highcharts-background {
- fill: #f2f0eb30;
+  fill: #f2f0eb30;
+}
+
+.highcharts-root {
+  font-family: "Open Sans", sans-serif;
+}
+
+.highcharts-title{
+  font-family: "Dosis", sans-serif !important;
+  text-transform: uppercase;
+  font-size: 2.6em !important;
+  color: #ce3815 !important;
+}
+
+.highcharts-subtitle {
+  font-family: "Dosis", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.6em;
+  color: #ce3815;
+}
+
+.highcharts-axis-labels, .highcharts-legend {
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 1.2em !important;
+}
+
+.highcharts-grid-line {
+  fill: #00092510;
+  stroke: #00092540;
+}
+
+.highcharts-axis-line {
+  fill: #ce3815;
+  stroke: #ce3815;
+}
+
+.highcharts-credits {
+  visibility: hidden;
 }

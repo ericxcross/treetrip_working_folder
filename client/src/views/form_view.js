@@ -13,12 +13,12 @@ FormView.prototype.bindEvents = function() {
 
 FormView.prototype.render = function(formData) {
   this.form.innerHTML = "";
+  this.currentItems = {};
 
   let idNum = 0;
 
   const action = (filteredData) => {
     idNum ++;
-    console.log(filteredData);
     if (filteredData.type !== undefined) {
       const newSelect = this.createSelect( filteredData, idNum );
       newSelect.scrollIntoView({
@@ -26,7 +26,6 @@ FormView.prototype.render = function(formData) {
             block: 'center',
             inline: 'center'})
       newSelect.addEventListener("change", evt => {
-        console.log('select');
         const selectIdNum = parseInt(evt.target.classList[0].slice(7));
         if (idNum > selectIdNum){
           for (var i = selectIdNum; i < idNum; i++) {
@@ -44,10 +43,10 @@ FormView.prototype.render = function(formData) {
         action(selectedData);
       });
     }else{
-
       const submit = this.createSubmitInput(idNum);
 
       submit.addEventListener("click", evt => {
+        console.log(this.currentItems)
         this.handleSubmit(evt);
       });
     }
@@ -70,7 +69,6 @@ FormView.prototype.createSelect = function(formData, idNum) {
 
   //CREATE RADIO BUTTONS FOR EACH ITEM
   formData.type.forEach((item) => {
-    console.log(item.name);
     const input = document.createElement("input");
     input.type = "radio";
     input.id = item.name;
@@ -144,7 +142,6 @@ FormView.prototype.createSubmitButton = function(idNum) {
 
 FormView.prototype.handleSubmit = function(evt) {
   evt.preventDefault();
-  this.form.innerHTML = '';
   PubSub.publish('FormView:TripDetails', this.currentItems);
 };
 

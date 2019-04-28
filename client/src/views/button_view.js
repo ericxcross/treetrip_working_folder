@@ -6,8 +6,8 @@ const ButtonView = function(button) {
 
 ButtonView.prototype.bindEvents = function () {
   this.button.addEventListener("click", evt => {
-    console.log('this happened')
     PubSub.publish("FormView:RequestData");
+    PubSub.publish("ClearElement");
   });
 };
 
