@@ -9,11 +9,7 @@ ResultTotalView.prototype.bindEvents = function() {
   PubSub.subscribe("CarbonCounter:OutputData", evt => {
     this.element.innerHTML = "";
     this.renderHexagon("co2-result", `${evt.detail.co2e}kg`, content_text.co2e);
-    this.renderHexagon(
-      "tree-result",
-      `${evt.detail.trees}`,
-      content_text.trees
-    );
+    this.renderHexagon("tree-result",`${evt.detail.trees}`, content_text.trees);
     this.renderHexagon("sc-result", `£ ${evt.detail.sc}`, content_text.sc);
   });
 

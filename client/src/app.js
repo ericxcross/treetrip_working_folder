@@ -5,7 +5,7 @@ const ResultTotalView = require("./views/result_total_view.js");
 const CarbonCounter = require("./models/carboncounter.js");
 const ResultAltView = require("./views/result_alternatives_view.js");
 const SummaryView = require("./views/summary_view.js");
-
+const BackgroundView = require("./views/background_view.js");
 
 document.addEventListener("DOMContentLoaded", () => {
   const buttonElement = document.querySelector("#form-button");
@@ -34,4 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const carbonCounter = new CarbonCounter();
   carbonCounter.bindEvents();
+
+  const bodyElement = document.querySelector("body");
+  const backgroundView = new BackgroundView(bodyElement);
+  backgroundView.bindEvents();
 });
